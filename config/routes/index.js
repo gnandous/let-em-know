@@ -1,4 +1,4 @@
-module.exports = function (app){
-	app.use('/api', require('./api'));
-	app.use('/', require('./website'));
+module.exports = function(app){
+  app.use('/api', require('./api'));
+  app.use('/', require('./website'));
 }
