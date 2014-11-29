@@ -2,6 +2,7 @@
 var debug = require('debug')('webjobbar');
 var app = require('../app');
 
+require('../config/routes')(app);
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
