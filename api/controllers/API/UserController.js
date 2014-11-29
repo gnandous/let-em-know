@@ -11,10 +11,10 @@ module.exports = {
   },
 
   create: function(req, res, next){
-    // TODO handle controller behavior
+    // TODO handle action behavior
   },
 
   destroy: function(req, res, next){
-    // TODO handle controller behavior
+    // TODO handle action behavior
   }
 }
