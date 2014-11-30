@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         separator: ";"
       },
       jsplugins:{
-        src: ["vendor/assets/javascripts/jquery/jquery.js", "vendor/assets/javascripts/angular/angular.js",  "vendor/assets/javascripts/angular/!(angular).js!(jquery)*.js"],
+        src: ["vendor/assets/javascripts/jquery/jquery.js", "vendor/assets/javascripts/angular/angular.js",  "vendor/assets/javascripts/*/*.js"],
         dest: "vendor/assets/javascripts/plugins.js"
       },
       alljs:{
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         // Task-specific options go here.
       },
       cssplugins: {
-        src: ['vendor/assets/stylesheets/bootstrap/bootstrap.css', 'vendor/assets/stylesheets/**/!(bootstrap)*.css'],
+        src: ['vendor/assets/stylesheets/bootstrap/bootstrap.css', 'vendor/assets/stylesheets/*/*.css'],
         dest:'vendor/assets/stylesheets/plugins.css'
       },
       allcss:{
