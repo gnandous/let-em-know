@@ -7,7 +7,7 @@
 module.exports = {
 
   index: function(req, res, next){
-    return res.render('index', { title: 'Hello world' });
+    res.render('index', { title: 'Hello world' });
   },
 
   create: function(req, res, next){
