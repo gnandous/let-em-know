@@ -8,7 +8,7 @@ var websiteRouter = express.Router();
 var controllers = require('../../api/controllers');
 
 
-websiteRouter.get('/', controllers.api.welcome.index);
+websiteRouter.get('/', controllers.website.welcome.index);
 
 
 module.exports = websiteRouter;
