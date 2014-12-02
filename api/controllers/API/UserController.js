@@ -1,8 +1,14 @@
-/**
- * UserController.js
- *
- * @description :: Server-side logic for managing users.
- */
+// ******************************* INFORMATION ***************************//
+
+// ***********************************************************************//
+//
+// ** UserController.js - Server-side logic for managing users..
+// ** @return   User controller object.
+//
+// ***********************************************************************//
+
+// ********************************** START ******************************//
+
 
 var User = require("../../models/UserModel");
 var bcrypt = require("bcrypt");
@@ -11,7 +17,9 @@ var _ = require("underscore");
 
 module.exports = {
 
-  // Implements index::action
+  // =======================================================================//
+  // ! Implements index::action.                                            //
+  // =======================================================================//
 
   index: function(req, res, next){
     User.find(function(err, users){
@@ -22,10 +30,18 @@ module.exports = {
     });
   },
 
-  // Implements create::action
+  // =======================================================================//
+  // ! Implements create::action.                                           //
+  // =======================================================================//
 
   create: function(req, res, next){
     var errors = [];
+
+    /**
+      * Check if all inputs have been filled correctly
+      * before saving them
+    */
+
     if (!req.body.email) {
       errors.push({
         field: 'email',
@@ -68,6 +84,11 @@ module.exports = {
       return res.status(400).send(errors);
     }
 
+    /**
+      * Check if user exists and save in db
+      * Or throw err
+    */
+
     User.ifexist({
       email: req.body.email
     }, function(err, user) {
@@ -100,10 +121,12 @@ module.exports = {
         });
       }
     });
-
   },
 
-  // Implements destroy::action
+  // =======================================================================//
+  // ! Implements destroy::action.                                           //
+  // =======================================================================//
+
   destroy: function(req, res, next){
     var condition = {
       _id: req.params.id
@@ -115,11 +138,13 @@ module.exports = {
       }
       else
         return res.status(400).send(err);
-
     });
   },
 
-  // Implements update::action
+  // =======================================================================//
+  // ! Implements update::action.                                           //
+  // =======================================================================//
+
   update: function(req, res, next){
 
     var condition = {
@@ -142,7 +167,10 @@ module.exports = {
       }
     });
   },
-  //Implements read ::action
+
+  // =======================================================================//
+  // ! Implements read::action.                                             //
+  // =======================================================================//
 
   read: function(req, res, next){
     User.findOne({
@@ -154,9 +182,15 @@ module.exports = {
       else{
         return res.status(400).send(err);
       }
-
     });
+  },
 
-  }
+  // =======================================================================//
+  // ! Implements user login logic.                                         //
+  // =======================================================================//
+
+  login: function(){
+
+  },
 
 }
