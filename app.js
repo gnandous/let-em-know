@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config/environnement');
 var mongoose = require ('mongoose');
+var MongoStore = require('connect-mongostore')(session);
 var app = express();
 
 mongoose.connect(config.db.mongo_uri);
@@ -21,9 +22,11 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(session({
+  key: 'session',
   secret: 'secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStore({'db': 'sessions'})
 }));
 
 app.use(bodyParser.json());
