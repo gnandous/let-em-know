@@ -109,6 +109,7 @@ module.exports = {
               pseudo: req.body.pseudo,
               name: req.body.name,
               email: req.body.email,
+              token: User.generateToken(),
               password: hash
             });
             newuser.save(function(err, user){
@@ -183,14 +184,6 @@ module.exports = {
         return res.status(400).send(err);
       }
     });
-  },
-
-  // =======================================================================//
-  // ! Implements user login logic.                                         //
-  // =======================================================================//
-
-  login: function(){
-
   },
 
 }

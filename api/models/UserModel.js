@@ -13,13 +13,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
+var crypto = require('crypto');
 
 var User = new Schema({
 
   firstname: String,
   lastname: String,
   avatar: String,
-  pseudo: String,
+  pseudo: {
+    type: String,
+    required: true
+  },
+  token:{
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true
@@ -34,6 +42,10 @@ User.statics.ifexist = function(data, callback){
   this.findOne({ email: data.email }, function(err, user){
     callback(err, user);
   });
+}
+
+User.statics.generateToken = function(){
+  return(crypto.randomBytes(16).toString('hex'));
 }
 
 // Model::Methods implements

@@ -1,7 +1,4 @@
- var flash = require('express-flash');
 var express = require('express');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -21,6 +18,8 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(cookieParser());
+
+/*
 app.use(session({
   key: 'session',
   secret: 'secret',
@@ -31,12 +30,11 @@ app.use(session({
     port: '6379',
     db: 1
   })
-
 }));
+*/
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'client/public')));
 
