@@ -1,20 +1,32 @@
-/**
-  @description :: will handle all request comming from angular api
-*/
+// ******************************* INFORMATION ***************************//
+
+// ***********************************************************************//
+// ** @description :: will handle all request comming from client         //
+// ***********************************************************************//
+
+// ********************************** START ******************************//
 
 var express = require('express');
 var ApiRouter = express.Router();
 var controllers = require('../../api/controllers');
 
-/* @all user post methods */
+module.exports = function(passport){
 
-ApiRouter.post('/user', controllers.api.user.create);
-ApiRouter.post('/user/:id', controllers.api.user.update);
+  /* @user login authentification */
 
-/* @all user get methods */
+  ApiRouter.post('/login', passport.authenticate('local', {failureRedirect: '/login', successRedirect: '/api', failureFlash: true}));
 
-ApiRouter.get('/users', controllers.api.user.index);
-ApiRouter.get('/user/:id', controllers.api.user.read);
-ApiRouter.get('/user/:id/remove', controllers.api.user.destroy);
+  /* @all user other post methods */
 
-module.exports = ApiRouter;
+  ApiRouter.post('/user', controllers.api.user.create);
+  ApiRouter.post('/user/:id', controllers.api.user.update);
+
+  /* @all user get methods */
+
+  ApiRouter.get('/', controllers.api.welcome.index);
+  ApiRouter.get('/users', controllers.api.user.index);
+  ApiRouter.get('/user/:user_id', controllers.api.user.read);
+  ApiRouter.get('/user/:id/remove', controllers.api.user.destroy);
+
+  return (ApiRouter);
+}

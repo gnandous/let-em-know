@@ -20,7 +20,10 @@ var User = new Schema({
   lastname: String,
   avatar: String,
   pseudo: String,
-  email: String,
+  email: {
+    type: String,
+    required: true
+  },
   password: String
 
 });

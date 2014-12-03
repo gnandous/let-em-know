@@ -5854,3 +5854,11 @@ td.visible-print {
 .btn-success:active,.btn-success.active,.open .dropdown-toggle.btn-success{background:#127964;border-color:#127964}
 .btn-success.disabled,.btn-success[disabled],fieldset[disabled] .btn-success,.btn-success.disabled:hover,.btn-success[disabled]:hover,fieldset[disabled] .btn-success:hover,.btn-success.disabled:focus,.btn-success[disabled]:focus,fieldset[disabled] .btn-success:focus,.btn-success.disabled:active,.btn-success[disabled]:active,fieldset[disabled] .btn-success:active,.btn-success.disabled.active,.btn-success[disabled].active,fieldset[disabled] .btn-success.active{background-color:#159077;border-color:#159077}
 /*My application less file*/
+/**
+ ** @description - Implements Stylesheet for login page
+*/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}

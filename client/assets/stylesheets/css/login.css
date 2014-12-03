@@ -1,0 +1,8 @@
+/**
+ ** @description - Implements Stylesheet for login page
+*/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}

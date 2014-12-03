@@ -9,6 +9,7 @@ var controllers = require('../../api/controllers');
 
 
 websiteRouter.get('/', controllers.website.welcome.index);
+websiteRouter.get('/login', controllers.website.welcome.login);
 
 
 module.exports = websiteRouter;
