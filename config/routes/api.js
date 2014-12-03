@@ -9,6 +9,7 @@
 var express = require('express');
 var ApiRouter = express.Router();
 var controllers = require('../../api/controllers');
+var SECUREROUTE = require("../../api/policies/SecureUrlPolicie");
 
 module.exports = function(passport){
 
@@ -23,7 +24,7 @@ module.exports = function(passport){
 
   /* @all user get methods */
 
-  ApiRouter.get('/', controllers.api.welcome.index);
+  ApiRouter.get('/', SECUREROUTE, controllers.api.welcome.index);
   ApiRouter.get('/users', controllers.api.user.index);
   ApiRouter.get('/user/:user_id', controllers.api.user.read);
   ApiRouter.get('/user/:id/remove', controllers.api.user.destroy);
