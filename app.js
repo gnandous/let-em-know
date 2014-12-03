@@ -1,6 +1,7 @@
  var flash = require('express-flash');
 var express = require('express');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,7 +9,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config/environnement');
 var mongoose = require ('mongoose');
-var MongoStore = require('connect-mongostore')(session);
 var app = express();
 
 mongoose.connect(config.db.mongo_uri);
@@ -26,7 +26,12 @@ app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({'db': 'sessions'})
+  store: new RedisStore({
+    host: 'localhost',
+    port: '6379',
+    db: 1
+  })
+
 }));
 
 app.use(bodyParser.json());
