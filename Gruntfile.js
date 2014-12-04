@@ -48,7 +48,7 @@ module.exports = function(grunt) {
     },
     watch:{
       dist:{
-        files:['client/assets/app/*.js','client/assets/stylesheets/less/*.less'],
+        files:['client/assets/app/**/*.js','client/assets/stylesheets/less/*.less'],
         tasks:['default'],
         options: {spawn:false}
       }

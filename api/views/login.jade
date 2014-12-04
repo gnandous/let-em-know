@@ -11,7 +11,10 @@ block content
             .message.info
               span= kw.error
       label.sr-only(for='inputEmail') Email address
-      input#pseudo.form-control(type='text', placeholder='pseudo', name='pseudo')
+      if (fields)
+        input#pseudo.form-control(type='text', placeholder='pseudo', name='pseudo' value=fields.pseudo)
+      else
+        input#pseudo.form-control(type='text', placeholder='pseudo', name='pseudo')
       label.sr-only(for='inputPassword') Password
       input#password.form-control(type='password', placeholder='Password', name='password')
       br
