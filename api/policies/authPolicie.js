@@ -9,7 +9,7 @@
 
 // ********************************** START ******************************//
 
-var passport = require('passport')
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var BearerStrategy = require('passport-http-bearer');
 var User = require('../models/UserModel');
