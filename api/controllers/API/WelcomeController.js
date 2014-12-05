@@ -15,7 +15,7 @@ module.exports = {
   */
 
   home: function(req, res, next){
-    if (req.cookies.user === undefined){
+    if (req.cookies.ltk_session === undefined){
       return res.redirect("/login");
     }
     else{

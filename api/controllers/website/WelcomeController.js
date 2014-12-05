@@ -5,6 +5,7 @@
  */
 
 var User = require('../../models/UserModel');
+var config = require('../../../config/environnement');
 
 module.exports = {
 
@@ -61,7 +62,12 @@ module.exports = {
         user.comparePassword(req.body.password, function(err, isMatch){
           if (!isMatch){res.render('login', {messages: [{error: 'password is not valid'}], fields: req.body});}
           else{
-            res.cookie('user', {user: user}, {httpOnly: true });
+            var cookieValue = {
+              email: user.email,
+              token: user.token,
+              id: user.id
+            };
+            res.cookie(config.session.cookie.name, cookieValue, {httpOnly: true });
             res.redirect('/home');
           }
         });

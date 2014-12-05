@@ -3,7 +3,7 @@
  ** @description - set Token before to all request.
 */
 
-myApp.factory('authInterceptor', function ($rootScope, $q, $window) {
+ltkApp.factory('authInterceptor', function ($rootScope, $q, $window) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
@@ -21,6 +21,6 @@ myApp.factory('authInterceptor', function ($rootScope, $q, $window) {
   };
 });
 
-myApp.config(function ($httpProvider) {
+ltkApp.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
 });
