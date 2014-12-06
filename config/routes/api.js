@@ -13,7 +13,9 @@ var BAERER = 'bearer';
 
 module.exports = function(passport){
 
-    //USER
+    // =======================================================================//
+    // ! USERS
+    // =======================================================================//
     /* @all user other post methods */
 
     ApiRouter.post('/user', controllers.api.user.create);
@@ -26,7 +28,9 @@ module.exports = function(passport){
     ApiRouter.get('/user/:user_id', controllers.api.user.read);
     ApiRouter.get('/user/:id/remove', controllers.api.user.destroy);
 
-    //TALENT
+    // =======================================================================//
+    // ! TALENT
+    // =======================================================================//
     /* @all talent post methods */
 
     ApiRouter.post('/talent', controllers.api.talent.create);
@@ -39,7 +43,9 @@ module.exports = function(passport){
     ApiRouter.get('/talent/:id/remove', controllers.api.talent.destroy);
 
 
-    //POST
+    // =======================================================================//
+    // ! POST
+    // =======================================================================//
     /* @all post post methods */
 
     ApiRouter.post('/post', controllers.api.post.create);
@@ -50,8 +56,10 @@ module.exports = function(passport){
     ApiRouter.get('/posts', controllers.api.post.index);
     ApiRouter.get('/post/:id', controllers.api.post.read);
     ApiRouter.get('/post/:id/remove', controllers.api.post.destroy);
-    
-    //COMMENT
+
+    // =======================================================================//
+    // ! COMMENT
+    // =======================================================================//
     /* @all comment comment methods */
 
     ApiRouter.post('/comment', controllers.api.comment.create);
@@ -62,5 +70,20 @@ module.exports = function(passport){
     ApiRouter.get('/comments', controllers.api.comment.index);
     ApiRouter.get('/comment/:id', controllers.api.comment.read);
     ApiRouter.get('/comment/:id/remove', controllers.api.comment.destroy);
+
+    // =======================================================================//
+    // ! FOLLOW
+    // =======================================================================//
+    /* @all follow follow methods */
+
+    ApiRouter.post('/follow', controllers.api.follow.create);
+    ApiRouter.post('/follow/:id', controllers.api.follow.update);
+
+    /* @all follow get methods */
+
+    ApiRouter.get('/follows', controllers.api.follow.index);
+    ApiRouter.get('/follow/:id', controllers.api.follow.read);
+    ApiRouter.get('/follow/:id/remove', controllers.api.follow.destroy);
+
     return (ApiRouter);
 }
