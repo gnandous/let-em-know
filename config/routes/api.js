@@ -50,5 +50,17 @@ module.exports = function(passport){
     ApiRouter.get('/posts', controllers.api.post.index);
     ApiRouter.get('/post/:id', controllers.api.post.read);
     ApiRouter.get('/post/:id/remove', controllers.api.post.destroy);
+    
+    //COMMENT
+    /* @all comment comment methods */
+
+    ApiRouter.post('/comment', controllers.api.comment.create);
+    ApiRouter.post('/comment/:id', controllers.api.comment.update);
+
+    /* @all comment get methods */
+
+    ApiRouter.get('/comments', controllers.api.comment.index);
+    ApiRouter.get('/comment/:id', controllers.api.comment.read);
+    ApiRouter.get('/comment/:id/remove', controllers.api.comment.destroy);
     return (ApiRouter);
 }

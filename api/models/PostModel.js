@@ -19,7 +19,7 @@ var _ = require("underscore");
 
 var PostSchema = new mongoose.Schema ({
     creator : {type : mongoose.Schema.ObjectId, ref: 'User', required : true},
-    tags : [{type : mongoose.Schema.ObjectId, ref: 'Talent'}],//[{type : mongoose.Schema.ObjectId, ref: 'Talent'}],
+    tags : [{type : mongoose.Schema.ObjectId, ref: 'Talent'}],
     content : {type : String, required : true},
     published_date : {type : Date, default : Date.now},
     post_type : {type : String, required : true, enum: ["video", "image","audio"]}
