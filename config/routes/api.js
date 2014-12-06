@@ -99,5 +99,19 @@ module.exports = function(passport){
     ApiRouter.get('/like/:id', controllers.api.like.read);
     ApiRouter.get('/like/:id/remove', controllers.api.like.destroy);
 
+    // =======================================================================//
+    // ! STORY
+    // =======================================================================//
+    /* @all story story methods */
+
+    ApiRouter.post('/story', controllers.api.story.create);
+    ApiRouter.post('/story/:id', controllers.api.story.update);
+
+    /* @all story get methods */
+
+    ApiRouter.get('/stories', controllers.api.story.index);
+    ApiRouter.get('/story/:id', controllers.api.story.read);
+    ApiRouter.get('/story/:id/remove', controllers.api.story.destroy);
+
     return (ApiRouter);
 }
