@@ -37,5 +37,18 @@ module.exports = function(passport){
     ApiRouter.get('/talents', controllers.api.talent.index);
     ApiRouter.get('/talent/:talent_id', controllers.api.talent.read);
     ApiRouter.get('/talent/:id/remove', controllers.api.talent.destroy);
+
+
+    //POST
+    /* @all post post methods */
+
+    ApiRouter.post('/post', controllers.api.post.create);
+    ApiRouter.post('/post/:id', controllers.api.post.update);
+
+    /* @all post get methods */
+
+    ApiRouter.get('/posts', controllers.api.post.index);
+    ApiRouter.get('/post/:id', controllers.api.post.read);
+    ApiRouter.get('/post/:id/remove', controllers.api.post.destroy);
     return (ApiRouter);
 }

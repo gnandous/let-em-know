@@ -23,11 +23,11 @@ module.exports = {
     // =======================================================================//
 
     index: function(req, res, next){
-        Talent.find(function(err, users){
+        Talent.find(function(err, talents){
             if (err){
                 return res.status(400).send(err);
             }
-            return res.status(200).send(users);
+            return res.status(200).send(talents);
         });
     },
 
@@ -79,7 +79,7 @@ module.exports = {
             });
 
             //Save the new Talent
-            newTalent.save(function(err, user){
+            newTalent.save(function(err, talent){
                 if(err){
                     return res.status(400).send(err);
                 }
@@ -124,7 +124,7 @@ module.exports = {
             }
             else{
                 talent = _.extend(talent, update);
-                talent.save(function(err, user){
+                talent.save(function(err, talent){
                     if (err){
                         return res.status(400).send(err);
                     }
