@@ -16,6 +16,10 @@ module.exports = {
   _500: function(err, req, res, next){
     console.log(err.stack);
     res.status(err.status || 500);
+    if(req.accepts('html')){
+      // TODO redirects to /errors to display errors stack
+    }
+    if(req.accepts('json')){ return(res.send({error: '500 - Internal Server Error'}));}
     res.send(err);
   },
   // handle 404 errors for not found pages
