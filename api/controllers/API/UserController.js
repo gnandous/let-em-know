@@ -24,7 +24,7 @@ module.exports = {
   index: function(req, res, next){
     User.find(function(err, users){
       if (err){
-        return res.status(400).send(err);
+        return next(err);
       }
       return res.status(200).send(users);
     });
@@ -103,7 +103,7 @@ module.exports = {
         bcrypt.genSalt(10, function(err, salt){
           bcrypt.hash(req.body.password, salt, function(err, hash){
             if(err){
-              return res.status(400).send(err);
+              return next(err);
             }
             var newuser = new User({
               pseudo: req.body.pseudo,
@@ -114,7 +114,7 @@ module.exports = {
             });
             newuser.save(function(err, user){
               if(err){
-                return res.status(400).send(err);
+                return next(err);
               }
                return res.status(200).send("user has been created");
             });
@@ -154,13 +154,13 @@ module.exports = {
     var update = req.body;
     User.findOne(condition,function(err, user){
       if (err){
-        return res.status(400).send(err);
+        return next(err);
       }
       else{
         user = _.extend(user, update);
         user.save(function(err, user){
           if (err){
-            return res.status(400).send(err);
+            return next(err);
           }
           else
             return res.status(200).send(user);

@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 var debug = require('debug')('let-em-know');
 var app = require('../app');
+var handleErrors = require('../api/helpers/errors');
 
 require('../config/routes')(app);
+app.use(handleErrors._500);
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
