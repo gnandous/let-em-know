@@ -19,7 +19,7 @@ module.exports = {
     if(req.accepts('html')){
       // TODO redirects to /errors to display errors stack
     }
-    if(req.accepts('json')){ return(res.send({error: '500 - Internal Server Error'}));}
+    if(req.accepts('json')){res.json(err);}
     res.send(err);
   },
   // handle 404 errors for not found pages
