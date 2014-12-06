@@ -85,5 +85,19 @@ module.exports = function(passport){
     ApiRouter.get('/follow/:id', controllers.api.follow.read);
     ApiRouter.get('/follow/:id/remove', controllers.api.follow.destroy);
 
+    // =======================================================================//
+    // ! LIKE
+    // =======================================================================//
+    /* @all like like methods */
+
+    ApiRouter.post('/like', controllers.api.like.create);
+    ApiRouter.post('/like/:id', controllers.api.like.update);
+
+    /* @all like get methods */
+
+    ApiRouter.get('/likes', controllers.api.like.index);
+    ApiRouter.get('/like/:id', controllers.api.like.read);
+    ApiRouter.get('/like/:id/remove', controllers.api.like.destroy);
+
     return (ApiRouter);
 }
