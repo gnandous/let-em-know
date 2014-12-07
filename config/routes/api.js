@@ -19,11 +19,14 @@ module.exports = function(passport){
     /* @all user other post methods */
 
     ApiRouter.post('/user', controllers.api.user.create);
-    ApiRouter.get('/*', passport.authenticate(BAERER, {session: false}));
+    // secure all post methods
+    ApiRouter.post('/*', passport.authenticate(BAERER, {session: false}));
     ApiRouter.post('/user/:id', controllers.api.user.update);
 
     /* @all user get methods */
 
+    // secure all get methods
+    ApiRouter.get('/*', passport.authenticate(BAERER, {session: false}));
     ApiRouter.get('/', controllers.api.welcome.index);
     ApiRouter.get('/users', controllers.api.user.index);
     ApiRouter.get('/user/:user_id', controllers.api.user.read);
