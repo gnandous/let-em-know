@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         dest: "vendor/assets/javascripts/plugins.js"
       },
       alljs:{
-        src:["vendor/assets/javascripts/plugins.js", "client/assets/app/modules/*.js","client/assets/app/app.js", "client/assets/app/services/*.js", "client/assets/app/controllers/*.js"],
+        src:["vendor/assets/javascripts/plugins.js", "client/assets/app/modules/*.js","client/assets/app/app.js", "client/assets/app/services/*.js", "client/assets/app/directives/*.js", "client/assets/app/controllers/*.js"],
         dest: "client/public/js/application.js"
       }
 

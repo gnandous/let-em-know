@@ -15,6 +15,8 @@ websiteRouter.get('/', controllers.website.welcome.index);
 websiteRouter.get('/login', controllers.website.welcome.login);
 
 websiteRouter.get('/home', controllers.api.welcome.home);
+websiteRouter.get('/*', controllers.api.welcome.home);
+
 /**
  ** @user authentification logic
 */

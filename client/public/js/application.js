@@ -33282,7 +33282,23 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 
 })(window, window.angular);
-;;var ltkApp = angular.module('ltkApp', ['ngRoute', 'Authorization', 'textAngular']);
+;;// declaration off module and its dependencies
+
+var ltkApp = angular.module('ltkApp', ['ngRoute']);
+
+// config angular app
+
+ltkApp.config(function($routeProvider, $locationProvider){
+
+  // Routing definition
+  $routeProvider.when('/home', {
+    templateUrl: 'templates/home.html',
+    controller: 'HomeController'
+  }).
+  otherwise({ redirectTo: '/login' });
+  $locationProvider.html5Mode(true);
+
+});
 ;/**
  ** AuthService.js - client-side logic for authentication ..
  ** @description - set Token before to all request.
@@ -33309,4 +33325,12 @@ ltkApp.factory('authInterceptor', function ($rootScope, $q, $window) {
 ltkApp.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
 });
-;
+;ltkApp.directive('header', function(){
+  return {
+    restrict: 'A',
+    templateUrl: "templates/partials/header.html",
+  }
+});
+;ltkApp.controller("HomeController", function($scope, $window, $http){
+  $scope.model = "hello";
+});
