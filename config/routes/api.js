@@ -113,5 +113,19 @@ module.exports = function(passport){
     ApiRouter.get('/story/:id', controllers.api.story.read);
     ApiRouter.get('/story/:id/remove', controllers.api.story.destroy);
 
+    // =======================================================================//
+    // ! NOTIFICATION
+    // =======================================================================//
+    /* @all notification notification methods */
+
+    ApiRouter.post('/notification', controllers.api.notification.create);
+    ApiRouter.post('/notification/:id', controllers.api.notification.update);
+
+    /* @all notification get methods */
+
+    ApiRouter.get('/notifications', controllers.api.notification.index);
+    ApiRouter.get('/notification/:id', controllers.api.notification.read);
+    ApiRouter.get('/notification/:id/remove', controllers.api.notification.destroy);
+
     return (ApiRouter);
 }

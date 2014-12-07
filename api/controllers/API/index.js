@@ -6,5 +6,6 @@ module.exports = {
     follow: require('./FollowController'),
     like: require('./LikeController'),
     story: require('./StoryController'),
+    notification: require('./NotificationController'),
     welcome: require('./WelcomeController')
 }
