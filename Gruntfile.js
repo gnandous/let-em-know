@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         // Task-specific options go here.
       },
       cssplugins: {
-        src: ['vendor/assets/stylesheets/bootstrap/bootstrap.css', 'vendor/assets/stylesheets/*/*.css'],
+        src: ['vendor/assets/stylesheets/bootstrap/bootstrap.css', 'vendor/assets/stylesheets/*/**.css'],
         dest:'vendor/assets/stylesheets/plugins.css'
       },
       allcss:{
