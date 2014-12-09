@@ -33499,7 +33499,7 @@ ltkApp.config(function($routeProvider, $locationProvider){
   $routeProvider.when('/home', {
     templateUrl: 'templates/home.html',
     controller: 'HomeController',
-    resolve: { model: function(Request){ return Request.url("/api");}}
+    resolve: { model: function(Request){ return Request.url("/api/current_user");}}
 
   }).
   otherwise({ redirectTo: '/login' });
@@ -33566,6 +33566,15 @@ ltkApp.config(function ($httpProvider) {
     templateUrl: "templates/partials/header.html",
   }
 });
-;ltkApp.controller("HomeController", function($scope, $window, $http, Request, model){
+;/**
+ ** Description :: HomeController /home
+*/
 
+ltkApp.controller("HomeController", function($scope, $window, $http, Request, model){
+
+  //initializing controller with current_user model.
+
+  $scope.init = (function(){
+    $scope.model = model;
+  })();
 });

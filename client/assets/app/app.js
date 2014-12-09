@@ -11,7 +11,7 @@ ltkApp.config(function($routeProvider, $locationProvider){
   $routeProvider.when('/home', {
     templateUrl: 'templates/home.html',
     controller: 'HomeController',
-    resolve: { model: function(Request){ return Request.url("/api");}}
+    resolve: { model: function(Request){ return Request.url("/api/current_user");}}
 
   }).
   otherwise({ redirectTo: '/login' });

@@ -31,6 +31,7 @@ module.exports = function(passport){
     ApiRouter.get('/users', controllers.api.user.index);
     ApiRouter.get('/user/:user_id', controllers.api.user.read);
     ApiRouter.get('/user/:id/remove', controllers.api.user.destroy);
+    ApiRouter.get('/current_user', controllers.api.user.current);
 
     // =======================================================================//
     // ! TALENT
