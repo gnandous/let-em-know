@@ -7,6 +7,7 @@
 module.exports = {
 
   index: function(req, res, next){
+    res.send("ok this is my controller return from api");
     // TODO index action (retrieve users informations)
   },
 
@@ -15,7 +16,7 @@ module.exports = {
   */
 
   home: function(req, res, next){
-    if (req.cookies.ltk_session === undefined){
+    if (req.cookies.ltk_sessionToken === undefined){
       return res.redirect("/login");
     }
     else{

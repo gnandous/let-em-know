@@ -62,12 +62,8 @@ module.exports = {
         user.comparePassword(req.body.password, function(err, isMatch){
           if (!isMatch){res.render('login', {messages: [{error: 'password is not valid'}], fields: req.body});}
           else{
-            var cookieValue = {
-              email: user.email,
-              token: user.token,
-              id: user.id
-            };
-            res.cookie(config.session.cookie.name, cookieValue, {httpOnly: true });
+            var cookieValue = user.token
+            res.cookie(config.session.cookie.name + "Token", cookieValue, {httpOnly: false });
             res.redirect('/home');
           }
         });

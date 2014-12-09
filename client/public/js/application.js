@@ -32359,6 +32359,210 @@ var styleDirective = valueFn({
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>');
 ;/**
+ * @license AngularJS v1.2.19
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
+ * License: MIT
+ */
+(function(window, angular, undefined) {'use strict';
+
+/**
+ * @ngdoc module
+ * @name ngCookies
+ * @description
+ *
+ * # ngCookies
+ *
+ * The `ngCookies` module provides a convenient wrapper for reading and writing browser cookies.
+ *
+ *
+ * <div doc-module-components="ngCookies"></div>
+ *
+ * See {@link ngCookies.$cookies `$cookies`} and
+ * {@link ngCookies.$cookieStore `$cookieStore`} for usage.
+ */
+
+
+angular.module('ngCookies', ['ng']).
+  /**
+   * @ngdoc service
+   * @name $cookies
+   *
+   * @description
+   * Provides read/write access to browser's cookies.
+   *
+   * Only a simple Object is exposed and by adding or removing properties to/from this object, new
+   * cookies are created/deleted at the end of current $eval.
+   * The object's properties can only be strings.
+   *
+   * Requires the {@link ngCookies `ngCookies`} module to be installed.
+   *
+   * @example
+   *
+   * ```js
+   * function ExampleController($cookies) {
+   *   // Retrieving a cookie
+   *   var favoriteCookie = $cookies.myFavorite;
+   *   // Setting a cookie
+   *   $cookies.myFavorite = 'oatmeal';
+   * }
+   * ```
+   */
+   factory('$cookies', ['$rootScope', '$browser', function ($rootScope, $browser) {
+      var cookies = {},
+          lastCookies = {},
+          lastBrowserCookies,
+          runEval = false,
+          copy = angular.copy,
+          isUndefined = angular.isUndefined;
+
+      //creates a poller fn that copies all cookies from the $browser to service & inits the service
+      $browser.addPollFn(function() {
+        var currentCookies = $browser.cookies();
+        if (lastBrowserCookies != currentCookies) { //relies on browser.cookies() impl
+          lastBrowserCookies = currentCookies;
+          copy(currentCookies, lastCookies);
+          copy(currentCookies, cookies);
+          if (runEval) $rootScope.$apply();
+        }
+      })();
+
+      runEval = true;
+
+      //at the end of each eval, push cookies
+      //TODO: this should happen before the "delayed" watches fire, because if some cookies are not
+      //      strings or browser refuses to store some cookies, we update the model in the push fn.
+      $rootScope.$watch(push);
+
+      return cookies;
+
+
+      /**
+       * Pushes all the cookies from the service to the browser and verifies if all cookies were
+       * stored.
+       */
+      function push() {
+        var name,
+            value,
+            browserCookies,
+            updated;
+
+        //delete any cookies deleted in $cookies
+        for (name in lastCookies) {
+          if (isUndefined(cookies[name])) {
+            $browser.cookies(name, undefined);
+          }
+        }
+
+        //update all cookies updated in $cookies
+        for(name in cookies) {
+          value = cookies[name];
+          if (!angular.isString(value)) {
+            value = '' + value;
+            cookies[name] = value;
+          }
+          if (value !== lastCookies[name]) {
+            $browser.cookies(name, value);
+            updated = true;
+          }
+        }
+
+        //verify what was actually stored
+        if (updated){
+          updated = false;
+          browserCookies = $browser.cookies();
+
+          for (name in cookies) {
+            if (cookies[name] !== browserCookies[name]) {
+              //delete or reset all cookies that the browser dropped from $cookies
+              if (isUndefined(browserCookies[name])) {
+                delete cookies[name];
+              } else {
+                cookies[name] = browserCookies[name];
+              }
+              updated = true;
+            }
+          }
+        }
+      }
+    }]).
+
+
+  /**
+   * @ngdoc service
+   * @name $cookieStore
+   * @requires $cookies
+   *
+   * @description
+   * Provides a key-value (string-object) storage, that is backed by session cookies.
+   * Objects put or retrieved from this storage are automatically serialized or
+   * deserialized by angular's toJson/fromJson.
+   *
+   * Requires the {@link ngCookies `ngCookies`} module to be installed.
+   *
+   * @example
+   *
+   * ```js
+   * function ExampleController($cookies) {
+   *   // Put cookie
+   *   $cookieStore.put('myFavorite','oatmeal');
+   *   // Get cookie
+   *   var favoriteCookie = $cookieStore.get('myFavorite');
+   *   // Removing a cookie
+   *   $cookieStore.remove('myFavorite');
+   * }
+   * ```
+   */
+   factory('$cookieStore', ['$cookies', function($cookies) {
+
+      return {
+        /**
+         * @ngdoc method
+         * @name $cookieStore#get
+         *
+         * @description
+         * Returns the value of given cookie key
+         *
+         * @param {string} key Id to use for lookup.
+         * @returns {Object} Deserialized cookie value.
+         */
+        get: function(key) {
+          var value = $cookies[key];
+          return value ? angular.fromJson(value) : value;
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookieStore#put
+         *
+         * @description
+         * Sets a value for given cookie key
+         *
+         * @param {string} key Id for the `value`.
+         * @param {Object} value Value to be stored.
+         */
+        put: function(key, value) {
+          $cookies[key] = angular.toJson(value);
+        },
+
+        /**
+         * @ngdoc method
+         * @name $cookieStore#remove
+         *
+         * @description
+         * Remove given cookie
+         *
+         * @param {string} key Id of the key-value pair to delete.
+         */
+        remove: function(key) {
+          delete $cookies[key];
+        }
+      };
+
+    }]);
+
+
+})(window, window.angular);
+;/**
  * @license AngularJS v1.2.25
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
@@ -33284,19 +33488,44 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 })(window, window.angular);
 ;;// declaration off module and its dependencies
 
-var ltkApp = angular.module('ltkApp', ['ngRoute']);
+var ltkApp = angular.module('ltkApp', ['ngRoute', 'ngCookies']);
 
 // config angular app
 
 ltkApp.config(function($routeProvider, $locationProvider){
 
   // Routing definition
+
   $routeProvider.when('/home', {
     templateUrl: 'templates/home.html',
-    controller: 'HomeController'
+    controller: 'HomeController',
+    resolve: { model: function(Request){ return Request.url("/api");}}
+
   }).
   otherwise({ redirectTo: '/login' });
   $locationProvider.html5Mode(true);
+
+});
+;/**
+ ** @description :: This service is such a helper for communcicating with the API
+ ** to run the function async just call the service like so
+ ** Request.url("someurl").then(function(value){});
+*/
+
+ltkApp.factory('Request', function ($cookies, $rootScope, $q, $window, $http) {
+  return {
+      url : function(url){
+        var deferred = $q.defer(); // using promise in case the function had to be called asynchronously
+        $http.get(url).
+          success(function(data, status, headers, config) {
+            deferred.resolve(data); // resolving the promise in success case
+          }).
+          error(function(data, status, headers, config) {
+            deferred.reject(status); // rejecting the promise in error case
+          });
+        return deferred.promise; // returning the promise
+      }
+  }
 
 });
 ;/**
@@ -33304,15 +33533,21 @@ ltkApp.config(function($routeProvider, $locationProvider){
  ** @description - set Token before to all request.
 */
 
-ltkApp.factory('authInterceptor', function ($rootScope, $q, $window) {
+ltkApp.factory('authInterceptor', function ($cookies, $rootScope, $q, $window) {
   return {
+    // set Baerer Authorization in headers before all request
     request: function (config) {
       config.headers = config.headers || {};
       if ($window.sessionStorage.token) {
-        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+        config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token
+      }
+      else if ($cookies.ltk_sessionToken){
+        $window.sessionStorage.setItem('token', $cookies.ltk_sessionToken);
+        config.headers.Authorization = 'Bearer ' + $cookies.ltk_sessionToken
       }
       return config;
     },
+    //Intercept the case before response is throw back to angular api
     response: function (response) {
       if (response.status === 401) {
         // handle the case where the user is not authenticated
@@ -33331,6 +33566,6 @@ ltkApp.config(function ($httpProvider) {
     templateUrl: "templates/partials/header.html",
   }
 });
-;ltkApp.controller("HomeController", function($scope, $window, $http){
-  $scope.model = "hello";
+;ltkApp.controller("HomeController", function($scope, $window, $http, Request, model){
+
 });
