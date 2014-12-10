@@ -53,6 +53,7 @@ module.exports = function(grunt) {
         options: {spawn:false}
       }
     },
+    //will be used in production
     /*
     filerev: {
       options:{
@@ -94,7 +95,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   //grunt.loadNpmTasks('grunt-jade-usemin');
   //grunt.loadNpmTasks('grunt-filerev');
-  //grunt.loadNpmTasks('grunt-jade-filerev-usemin');
   //grunt.registerTask('build', 'Build task, does everything', ['jadeUsemin']);
   grunt.registerTask('default',['less','concat_css:cssplugins','concat_css:allcss', 'concat:jsplugins', 'concat:alljs']);
   //in production
