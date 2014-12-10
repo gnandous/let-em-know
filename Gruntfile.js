@@ -48,11 +48,12 @@ module.exports = function(grunt) {
     },
     watch:{
       dist:{
-        files:['client/assets/app/**/*.js','client/assets/stylesheets/less/*.less', 'client/assets/stylesheets/css/*.css', 'api/views/api/build.jade'],
+        files:['client/assets/app/**/*.js','client/assets/stylesheets/less/*.less', 'client/assets/stylesheets/css/*.css'],
         tasks:['default'],
         options: {spawn:false}
       }
     },
+    /*
     filerev: {
       options:{
         encoding: 'utf8',
@@ -81,6 +82,7 @@ module.exports = function(grunt) {
           }]
       }
     }
+    */
 
   });
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -90,11 +92,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concat-css');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-rev');
-  grunt.loadNpmTasks('grunt-jade-usemin');
-  grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-filerev');
-  grunt.loadNpmTasks('grunt-jade-filerev-usemin');
-  grunt.registerTask('build', 'Build task, does everything', ['jadeUsemin']);
-  grunt.registerTask('default',['less','concat_css:cssplugins','concat_css:allcss', 'concat:jsplugins', 'concat:alljs', 'build']);
+  //grunt.loadNpmTasks('grunt-jade-usemin');
+  //grunt.loadNpmTasks('grunt-filerev');
+  //grunt.loadNpmTasks('grunt-jade-filerev-usemin');
+  //grunt.registerTask('build', 'Build task, does everything', ['jadeUsemin']);
+  grunt.registerTask('default',['less','concat_css:cssplugins','concat_css:allcss', 'concat:jsplugins', 'concat:alljs']);
+  //in production
+  //grunt.registerTask('default',['less','concat_css:cssplugins','concat_css:allcss', 'concat:jsplugins', 'concat:alljs', 'build']);
+  // watch also , 'api/views/api/build.jade'
 }
