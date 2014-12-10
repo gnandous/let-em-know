@@ -28,6 +28,12 @@
     "grunt-contrib-cssmin": "^0.10.0",
     "grunt-contrib-less": "^0.12.0",
     "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-filerev": "^2.1.2",
+    "grunt-jade-filerev-usemin": "0.0.1",
+    "grunt-jade-usemin": "^0.11.0",
+    "grunt-rev": "^0.1.0",
+    "grunt-usemin": "^2.6.2",
+    "usemin-patterns": "^0.1.4"
   }
 }
