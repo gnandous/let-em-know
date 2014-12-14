@@ -7527,10 +7527,36 @@ td.visible-print {
 }
 /*My application less file*/
 /**
+ ** Styles relative to body
+*/
+body {
+  background-color: #e9eaed;
+}
+#page {
+  margin-top: 50px;
+}
+/**
  ** @description - Implements Stylesheet for login page
 */
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+}
+.PstC {
+  height: 300px;
+  width: 100%;
+}
+.panel {
+  margin: 10px 0px;
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.panel .panel-heading {
+  padding: 10px 15px;
+}
+.panel .panel-body {
+  background-color: #FFF;
+  padding: 26px;
 }
