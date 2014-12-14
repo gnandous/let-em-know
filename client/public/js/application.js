@@ -35296,7 +35296,7 @@ ltkApp.config(function($routeProvider, $locationProvider){
       controller: 'HomeController',
       resolve: { model: function(Request){ return Request.url("/api/current_user");}}
     }).
-    when("/post/new/ok", {
+    when("/post/new", {
       templateUrl: '/templates/newpost.html',
       controller: 'NewPostController',
       resolve: { model: function(Request){ return Request.url("/api/current_user");}}
@@ -35384,9 +35384,8 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
 ltkApp.controller("NewPostController", function($scope, $window, $http, model){
 
   //initializing controller with current_user model.
-/*
   $scope.init = (function(){
     $scope.model = model;
   })();
-*/
+
 });
