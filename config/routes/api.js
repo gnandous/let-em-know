@@ -55,6 +55,7 @@ module.exports = function(passport){
 
     ApiRouter.post('/post', controllers.api.post.create);
     ApiRouter.post('/post/:id', controllers.api.post.update);
+    ApiRouter.post('/post/media/upload', controllers.api.post.upload);
 
     /* @all post get methods */
 

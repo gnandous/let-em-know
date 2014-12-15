@@ -17,7 +17,10 @@ ltkApp.config(function($routeProvider, $locationProvider){
     when("/post/new", {
       templateUrl: '/templates/newpost.html',
       controller: 'NewPostController',
-      resolve: { model: function(Request){ return Request.url("/api/current_user");}}
+      resolve: {
+        model: function(Request){ return Request.url("/api/current_user");},
+        talents: function(Request){ return Request.url("/api/talents");}
+      }
     }).
     otherwise({ redirectTo: '/login' });
     $locationProvider.html5Mode(true);

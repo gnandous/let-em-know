@@ -1,3 +1,5 @@
+@inputwidth :100%;
+@inputHeight: 40px;
 .panel{
   margin: 10px 0px;
   background-color: #fff;
@@ -5,6 +7,11 @@
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
   .panel-heading{
     padding: 10px 15px;
+    input{
+      width: @inputwidth;
+      height: @inputHeight;
+      text-align: center;
+    };
   }
   .panel-body{
     background-color: #FFF;

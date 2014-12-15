@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('./config/environnement');
 var mongoose = require ('mongoose');
+var multer = require('multer');
 var app = express();
 
 mongoose.connect(config.db.mongo_uri);
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(multer({dest: __dirname + "/client/public/uploads"}));
 
 /* Will handle this later
 

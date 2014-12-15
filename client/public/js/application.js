@@ -35299,7 +35299,10 @@ ltkApp.config(function($routeProvider, $locationProvider){
     when("/post/new", {
       templateUrl: '/templates/newpost.html',
       controller: 'NewPostController',
-      resolve: { model: function(Request){ return Request.url("/api/current_user");}}
+      resolve: {
+        model: function(Request){ return Request.url("/api/current_user");},
+        talents: function(Request){ return Request.url("/api/talents");}
+      }
     }).
     otherwise({ redirectTo: '/login' });
     $locationProvider.html5Mode(true);
@@ -35381,11 +35384,21 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
  ** Description :: NewPostController /home
 */
 
-ltkApp.controller("NewPostController", function($scope, $window, $http, model){
+ltkApp.controller("NewPostController", function($scope, $window, $http, model, talents){
 
   //initializing controller with current_user model.
   $scope.init = (function(){
+    // drop zone options config
+    $(".dropzone").dropzone({
+      url: "/api/post/media/upload",
+      headers: {
+        "Authorization": "Bearer " + model.token
+      }
+    });
+    $scope.talents = talents;
     $scope.model = model;
   })();
+
+  $scope.post = {};
 
 });
