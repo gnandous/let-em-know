@@ -7545,11 +7545,19 @@ body {
   height: 100%;
   border: #ddd 4px dashed;
   border-radius: 2px;
-  padding-top: 30px;
+  padding-top: 20px;
   text-align: center;
 }
 .dropzonecontainer .infos {
   pointer-events: none;
+}
+.dropzonecontainer .dz-default,
+.dropzonecontainer .dz-success-mark,
+.dropzonecontainer .dz-error-mark,
+.dropzonecontainer .dz-error-message,
+.dropzonecontainer .dz-size,
+.dropzonecontainer .dz-filename {
+  display: none;
 }
 #page {
   margin-top: 50px;
@@ -7562,12 +7570,49 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
+.padding {
+  padding: 10px 10px;
+}
+.newpost .sendPost {
+  margin-top: 20px;
+  width: 100%;
+  background-color: transparent;
+  border: solid #66cdaa 1px;
+  border-radius: 0px;
+  color: #66cdaa;
+}
+.newpost .sendPost:hover {
+  background-color: #66cdaa;
+  color: white;
+}
+.newpost .progress-bar {
+  width: 0px;
+  background-color: #66cdaa;
+  height: 30px;
+  -webkit-box-shadow: none;
+}
+.newpost #title {
+  text-align: left;
+  width: 100%;
+  border: none;
+  margin-bottom: -38px;
+  min-height: 63px;
+  resize: none;
+  padding: 10px 10px;
+}
+.newpost #title:focus {
+  outline: 0;
+}
 .PstC {
   height: 300px;
   width: 100%;
 }
 .postaddtalent {
   cursor: pointer;
+}
+.postaddtalent .addedTags {
+  background-color: #66cdaa;
+  color: white;
 }
 .panel {
   margin: 10px 0px;

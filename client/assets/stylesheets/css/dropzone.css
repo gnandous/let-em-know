@@ -10,9 +10,17 @@
   height: 100%;
   border: #ddd 4px dashed;
   border-radius: 2px;
-  padding-top: 30px;
+  padding-top: 20px;
   text-align: center;
 }
 .dropzonecontainer .infos {
   pointer-events: none;
+}
+.dropzonecontainer .dz-default,
+.dropzonecontainer .dz-success-mark,
+.dropzonecontainer .dz-error-mark,
+.dropzonecontainer .dz-error-message,
+.dropzonecontainer .dz-size,
+.dropzonecontainer .dz-filename {
+  display: none;
 }

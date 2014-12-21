@@ -40,12 +40,12 @@ module.exports = {
 
     create: function(req, res, next){
         var post = new Post(req.body);
-
-        //save post
         post.save(function (err){
-            if(err)
-                return res.json(400, err);
-            res.json(post);
+            if(err){
+              next (err);
+            }
+            else
+              res.send(post);
         });
     },
 
@@ -64,7 +64,7 @@ module.exports = {
                     return res.json(500, err);
                 if(!post)
                     return res.send(204);
-                res.json(post);
+                res.send(post);
             });
     },
     // =======================================================================//
@@ -72,7 +72,8 @@ module.exports = {
     // =======================================================================//
 
     upload: function(req, res, next){
-      console.log(req.files);
+      // TODO Check if its video, audio or image for files partitions
+      res.json(req.files.file.name);
     },
 
     // =======================================================================//

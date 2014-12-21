@@ -23,9 +23,14 @@ var StorySchema = new mongoose.Schema ({
     verb : {type : String, required : true, enum: ["post", "follow","comment"]},
     creator : {type : mongoose.Schema.ObjectId, ref: 'User', required : true},
     target : {
-        post: {type : mongoose.Schema.ObjectId, ref: 'Post'},
-        follow: {type : mongoose.Schema.ObjectId, ref: 'Follow'},
-        comment: {type : mongoose.Schema.ObjectId, ref: 'Comment'}
+      object: {
+        type :  mongoose.Schema.ObjectId,
+        required: true
+      },
+      type : {
+        type : String,
+        required : true
+      }
     },
     published_date : {type : Date, default : Date.now}
 

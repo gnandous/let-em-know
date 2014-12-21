@@ -1,8 +1,51 @@
 @height: 300px;
+@greencolor: #66CDAA;
+.padding{
+  padding: 10px 10px;
+}
+.newpost{
+  .sendPost{
+    margin-top: 20px;
+    width: 100%;
+    background-color: transparent;
+    border: solid @greencolor 1px;
+    border-radius: 0px;
+    color: @greencolor;
+  }
+  .sendPost:hover{
+    background-color: @greencolor;
+    color: white;
+  }
+  .progress-bar{
+    width: 0px;
+    background-color: #66cdaa;
+    height: 30px;
+    -webkit-box-shadow : none;
+  }
+  textarea{
+    //border: none;
+  }
+  #title{
+    text-align: left;
+    width: 100%;
+    border: none;
+    margin-bottom: -38px;
+    min-height: 63px;
+    resize: none;
+    .padding;
+  }
+  #title:focus{
+    outline: 0;
+  }
+}
 .PstC{
   height: @height;
   width: 100%;
 }
 .postaddtalent{
   cursor: pointer;
+  .addedTags{
+    background-color: @greencolor;
+    color: white;
+  }
 }

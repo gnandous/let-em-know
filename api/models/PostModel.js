@@ -13,17 +13,30 @@
 // ********************************** START ******************************//
 
 var mongoose = require('mongoose');
+var Story = require('./StoryModel');
 var Talent = require("./TalentModel");
 var User = require("./UserModel");
 var _ = require("underscore");
 
 var PostSchema = new mongoose.Schema ({
+    title : {type : String},
     creator : {type : mongoose.Schema.ObjectId, ref: 'User', required : true},
     tags : [{type : mongoose.Schema.ObjectId, ref: 'Talent'}],
-    content : {type : String, required : true},
+    content : {type : String},
     published_date : {type : Date, default : Date.now},
     post_type : {type : String, required : true, enum: ["video", "image","audio"]}
 });
+
+// customize required message
+//PostSchema.path('post_type').required(true, 'Post type must be filled');
+PostSchema.path('content').required(true, 'Content must be filled');
+PostSchema.path('title').validate(function(value, respond){
+  if (!value){
+    return respond(false);
+  }
+  respond(true);
+}, "Title must be filled");
+
 
 //validate Tags
 PostSchema.path('tags').validate(function(list, respond){
@@ -53,6 +66,21 @@ PostSchema.path('creator').validate(function(value, respond){
     });
 }, "User is not found");
 
+// Before saving post We must create a Storie
+
+PostSchema.post('save', function (doc) {
+  // create the associate story
+  story = new Story({
+    verb : "post",
+    creator : doc.creator,
+    target : {
+      object : doc._id,
+      type : "POST"
+    }
+  });
+  story.save();
+
+})
 
 module.exports = mongoose.model('Post', PostSchema);
 
