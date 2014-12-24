@@ -24,3 +24,22 @@
 .dropzonecontainer .dz-filename {
   display: none;
 }
+.dropzonecontainer .dpz-select {
+  height: 30px;
+  background-color: #4285f4;
+  font-size: 14px;
+  color: white;
+  padding: 4px 24px;
+}
+.dropzonecontainer #dpz-action {
+  position: absolute;
+  top: 128px;
+  left: 50%;
+  margin-left: -18px;
+  opacity: 0;
+  width: 50px;
+  height: 50px;
+}
+.dropzonecontainer #dpz-action .fa-times {
+  font-size: 45px;
+}

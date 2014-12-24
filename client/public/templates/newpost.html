@@ -14,17 +14,20 @@
               </div>
             </div>
             <h2>SHARE YOUR POST</h2>
-             <div class='progress-bar'></div>
+            <div class='progress-bar'></div>
             <textarea type='text' placeholder='Share something' name='title' id='title' ng-model='post.title'></textarea>
           </div>
           <div class='panel-body'>
             <div class='PstC'>
               <!-- dropzone body for media -->
               <div id="dropzonecontainer" class='dropzonecontainer dropzone'>
+                <div id='dpz-action'>
+                  <i class="fa fa-times"></i>
+                </div>
                 <div class='infos'>
                   <h3>Faire glisser une image ici.</h3>
                   <p>vous pouvez également ...</p>
-                  <button type="button" class="btn btn-default">Selectionner l'image à importer</button>
+                  <button type="button" class="btn  dpz-select">Selectionner l'image à importer</button>
                 </div>
               </div>
             </div>

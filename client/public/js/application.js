@@ -36735,6 +36735,7 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
 
     $scope.talents = talents;
     $scope.model = model;
+    $scope.file = "";
 
     $scope.post = {
       tags: [],
@@ -36751,6 +36752,12 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
     var OPTIONS = {
       init: function(){
         this.on("addedfile", function(file) {
+          $scope.file = file;
+          var self = this;
+          $( "#dpz-action" ).click(function() {
+            self.removeFile(file);
+          });
+
           if (file.type === "image/png" || file.type === "image/JPEG"){
             $scope.post.post_type = "image"
           }
@@ -36778,9 +36785,17 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
         $('.progress-bar').css('width', progress);
         //console.log(data);
       },
-
+      removedfile: function(file, data){
+        // later call ajax to server for removing file
+        $(".dz-image-preview").html("");
+        $('#dpz-action').addClass('animated fadeOutDown');
+        $('.progress-bar').css('width', '0%');
+        $(".infos").css('display', 'block');
+      },
       processing: function(file){
         $(".infos").css('display', 'none');
+        $('#dpz-action').removeClass('animated fadeOutDown');
+        $('#dpz-action').addClass('animated fadeInUp');
       },
       success: function(response, data){
         $scope.post.content = "/uploads/" + data;
