@@ -32,15 +32,14 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
           $( "#dpz-action" ).click(function() {
             self.removeFile(file);
           });
-
-          if (file.type === "image/png" || file.type === "image/JPEG"){
+          if (file.type.match("image.*")){
             $scope.post.post_type = "image"
           }
-          else if (file.type === "video/mp4"){
-            $scope.post.post_type = "audio"
+          else if (file.type.match("video.*")){
+            $scope.post.post_type = "video"
           }
           else
-            $scope.post.post_type = "video"
+            $scope.post.post_type = "audio"
         });
       },
       url: "/api/post/media/upload",

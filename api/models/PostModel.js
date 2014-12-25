@@ -66,7 +66,7 @@ PostSchema.path('creator').validate(function(value, respond){
     });
 }, "User is not found");
 
-// Before saving post We must create a Storie
+// After saving post We must create a Storie
 
 PostSchema.post('save', function (doc) {
   // create the associate story
