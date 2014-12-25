@@ -44,6 +44,21 @@ CommentSchema.path('post').validate(function(value, respond){
     });
 }, "Post is not found");
 
+// After saving comment We must create a Storie
+
+CommentSchema.post('save', function (doc) {
+  // create the associate story
+  story = new Story({
+    verb : "comment",
+    creator : doc.creator,
+    target : {
+      object : doc._id,
+      type : "COMMENT"
+    }
+  });
+  story.save();
+})
+
 module.exports = mongoose.model('Comment', CommentSchema);
 
 
