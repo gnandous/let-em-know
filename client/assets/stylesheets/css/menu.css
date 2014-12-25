@@ -1,0 +1,14 @@
+.menu{
+    margin-left: 10px;
+    width: 200px;
+}
+.menu .panel:first-child{
+    margin-top:0;
+    padding-bottom: 10px;
+}
+/*=============================================
+* MENU FOLLOWINGS
+*==============================================*/
+.menu_following .badge{
+    background-color: red;
+}

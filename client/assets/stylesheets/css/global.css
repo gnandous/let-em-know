@@ -1,0 +1,26 @@
+.under_header{
+    margin-top: 70px;
+}
+.after_left_menu{
+    margin-left: 220px;
+}
+.left{
+    float:left;
+}
+
+.main_content{
+    border: 1px solid green;
+}
+/*=============================================
+* AVATAR SIZES
+*==============================================*/
+.avatar_small{
+    max-height: 20px;
+    max-width: 20px;
+    margin-right: 10px;
+}
+.avatar_medium{
+    max-height: 50px;
+    max-width: 50px;
+    margin-right: 10px;
+}

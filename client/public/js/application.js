@@ -35362,10 +35362,57 @@ ltkApp.config(function ($httpProvider) {
 ;ltkApp.directive('header', function(){
   return {
     restrict: 'A',
-    templateUrl: "/templates/partials/header.html",
+    templateUrl: "/templates/partials/header.html"
   }
 });
-;/**
+;/*Directives menu*/
+ltkApp.directive('menuprofil', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/menu/profil.html"
+    }
+});
+ltkApp.directive('menufollowings', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/menu/followings.html"
+    }
+});
+ltkApp.directive('menutalents', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/menu/talents.html"
+    }
+});;/*Directive Post and Post_filter*/
+ltkApp.directive('post', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/main_content/post.html"
+    }
+});
+ltkApp.directive('post_filter', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/main_content/post_filter.html"
+    }
+});;/**
+ * Created by gladisk on 12/25/14.
+ */
+/**
+ ** Description :: followingListController /home
+ */
+
+ltkApp.controller('FollowingController', ['$scope', '$http', function($scope, $http) {
+    $scope.followings = null;
+    $http.get('api/followings/').
+        success(function(data) {
+            $scope.followings = data;
+        }).
+        error(function(data){
+            //handle error
+            $scope.errorStatus = JSON.parse(JSON.stringify(response.data));
+        });
+}]);;/**
  ** Description :: HomeController /home
 */
 
@@ -35390,3 +35437,21 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model){
   })();
 */
 });
+;/**
+ * Created by gladisk on 12/25/14.
+ */
+/**
+ ** Description :: TalentListController /home
+ */
+
+ltkApp.controller('TalentController', ['$scope', '$http', function($scope, $http) {
+    $scope.talents = null;
+    $http.get('api/talents/').
+        success(function(data) {
+            $scope.talents = data;
+        }).
+        error(function(data){
+            //handle error
+            $scope.errorStatus = JSON.parse(JSON.stringify(response.data));
+        });
+}]);

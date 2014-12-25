@@ -7543,6 +7543,32 @@ body {
   padding-top: 30px;
   text-align: center;
 }
+.under_header{
+    margin-top: 70px;
+}
+.after_left_menu{
+    margin-left: 220px;
+}
+.left{
+    float:left;
+}
+
+.main_content{
+    border: 1px solid green;
+}
+/*=============================================
+* AVATAR SIZES
+*==============================================*/
+.avatar_small{
+    max-height: 20px;
+    max-width: 20px;
+    margin-right: 10px;
+}
+.avatar_medium{
+    max-height: 50px;
+    max-width: 50px;
+    margin-right: 10px;
+}
 #page {
   margin-top: 50px;
 }
@@ -7553,6 +7579,20 @@ body {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+}
+.menu{
+    margin-left: 10px;
+    width: 200px;
+}
+.menu .panel:first-child{
+    margin-top:0;
+    padding-bottom: 10px;
+}
+/*=============================================
+* MENU FOLLOWINGS
+*==============================================*/
+.menu_following .badge{
+    background-color: red;
 }
 .PstC {
   height: 300px;
@@ -7570,4 +7610,21 @@ body {
 .panel .panel-body {
   background-color: #FFF;
   padding: 26px;
+}
+.post_filter li{
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 20px;
+    border: blue 1px solid;
+    font:2em;
+    color:#808080;
+    margin-right: 20px;
+}
+.post_filter li.selected{
+    color:#000000;
+    font-weight: bolder;
+}
+.post_filter li:hover{
+    color:limegreen;
 }
