@@ -1,4 +1,44 @@
+.padding {
+  padding: 10px 10px;
+}
+.newpost .sendPost {
+  margin-top: 20px;
+  width: 100%;
+  background-color: transparent;
+  border: solid #66cdaa 1px;
+  border-radius: 0px;
+  color: #66cdaa;
+}
+.newpost .sendPost:hover {
+  background-color: #66cdaa;
+  color: white;
+}
+.newpost .progress-bar {
+  width: 0px;
+  background-color: #66cdaa;
+  height: 30px;
+  -webkit-box-shadow: none;
+}
+.newpost #title {
+  text-align: left;
+  width: 100%;
+  border: none;
+  margin-bottom: -38px;
+  min-height: 63px;
+  resize: none;
+  padding: 10px 10px;
+}
+.newpost #title:focus {
+  outline: 0;
+}
 .PstC {
   height: 300px;
   width: 100%;
+}
+.postaddtalent {
+  cursor: pointer;
+}
+.postaddtalent .addedTags {
+  background-color: #66cdaa;
+  color: white;
 }

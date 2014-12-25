@@ -42,6 +42,21 @@ FollowSchema.path('following').validate(function(value, respond){
     });
 }, "Following is not found");
 
+// After saving We must create a Storie
+
+FollowSchema.post('save', function (doc) {
+  // create the associate story
+  story = new Story({
+    verb : "follows",
+    creator : doc.follower,
+    target : {
+      object : doc._id,
+      type : "FOLLOW"
+    }
+  });
+  story.save();
+})
+
 module.exports = mongoose.model('Follow', FollowSchema);
 
 

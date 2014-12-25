@@ -43,6 +43,21 @@ LikeSchema.path('post').validate(function(value, respond){
     });
 }, "Post is not found");
 
+// After saving We must create a Storie
+
+LikeSchema.post('save', function (doc) {
+  // create the associate story
+  story = new Story({
+    verb : "like",
+    creator : doc.user,
+    target : {
+      object : doc._id,
+      type : "LIKE"
+    }
+  });
+  story.save();
+})
+
 module.exports = mongoose.model('Like', LikeSchema);
 
 
