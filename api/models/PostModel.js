@@ -79,7 +79,6 @@ PostSchema.post('save', function (doc) {
     }
   });
   story.save();
-
 })
 
 module.exports = mongoose.model('Post', PostSchema);
