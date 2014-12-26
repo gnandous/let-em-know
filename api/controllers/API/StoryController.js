@@ -28,6 +28,7 @@ module.exports = {
     // =======================================================================//
 
     index: function(req, res, next){
+
         Story.find()
             .populate('creator')
             .exec(function(err, stories){
@@ -35,7 +36,7 @@ module.exports = {
                     return res.status(400).send(err);
                 }
 
-                Story.populateTarget(0, stories, res);
+                //Story.populateTarget(0, stories, res);
                 /*for (var i=0; i < stories.length; i++){
                     (function(i_tmp){
                         if (stories[i_tmp].verb == "post"){
@@ -58,6 +59,11 @@ module.exports = {
                         }
                     })(i);
                 }*/
+                Story.populateStories(story, function(err, stories){
+                  if (err)
+                    return next(err);
+                  return res.status(200).send(stories);
+                });
             });
     },
 

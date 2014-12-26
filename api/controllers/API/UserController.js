@@ -12,6 +12,7 @@
 
 var User = require("../../models/UserModel");
 var Notification = require("../../models/NotificationModel");
+var Story = require("../../models/StoryModel");
 var bcrypt = require("bcrypt");
 var validator = require("../../helpers/validator");
 var _ = require("underscore");
@@ -185,13 +186,34 @@ module.exports = {
                 return res.status(400).send(err);
             }
         });
-    },
+      }
+    });
+  },
 
-    // =======================================================================//
-    // ! Implements current::action.                                           //
-    // =======================================================================//
+  // =======================================================================//
+  // ! Implements read::action.                                             //
+  // =======================================================================//
 
-    current: function(req, res, next){
-        res.send(req.user);
+  read: function(req, res, next){
+    User.findOne({
+      _id: req.params.user_id
+    }, function(err, user){
+      if(user){
+        return res.status(200).send(user);
+      }
+      else{
+        return res.status(400).send(err);
+      }
+    });
+  },
+
+   // =======================================================================//
+  // ! Implements current::action.                                           //
+  // =======================================================================//
+
+  current: function(req, res, next){
+    if (req.user){
+      res.send(req.user);
     }
+  }
 }
