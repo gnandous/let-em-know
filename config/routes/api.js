@@ -88,6 +88,7 @@ module.exports = function(passport){
 
     ApiRouter.get('/follows', controllers.api.follow.index);
     ApiRouter.get('/follow/:id', controllers.api.follow.read);
+    ApiRouter.get('/user_follows/:id', controllers.api.follow.userFollows);
     ApiRouter.get('/follow/:id/remove', controllers.api.follow.destroy);
 
     // =======================================================================//
@@ -130,6 +131,7 @@ module.exports = function(passport){
 
     ApiRouter.get('/notifications', controllers.api.notification.index);
     ApiRouter.get('/notification/:id', controllers.api.notification.read);
+    ApiRouter.get('/notifications/unread/:from/:to', controllers.api.notification.unreadNotifications);
     ApiRouter.get('/notification/:id/remove', controllers.api.notification.destroy);
 
     return (ApiRouter);

@@ -35359,7 +35359,20 @@ ltkApp.factory('authInterceptor', function ($cookies, $rootScope, $q, $window) {
 ltkApp.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
 });
-;ltkApp.directive('header', function(){
+;/**
+ * Created by gladisk on 12/26/14.
+ */
+/**
+ ** capitalizeFilter.js - client-side logic for capitalizing string ..
+ ** @description - return a capitalized string.
+ */
+ltkApp.filter('capitalize', function(){
+    return function(input){
+        if(input){
+            return input[0].toUpperCase() + input.slice(1);
+        }
+    };
+});;ltkApp.directive('header', function(){
   return {
     restrict: 'A',
     templateUrl: "/templates/partials/header.html"
@@ -35396,33 +35409,42 @@ ltkApp.directive('post_filter', function(){
         templateUrl: "/templates/main_content/post_filter.html"
     }
 });;/**
- * Created by gladisk on 12/25/14.
- */
-/**
- ** Description :: followingListController /home
- */
-
-ltkApp.controller('FollowingController', ['$scope', '$http', function($scope, $http) {
-    $scope.followings = null;
-    $http.get('api/followings/').
-        success(function(data) {
-            $scope.followings = data;
-        }).
-        error(function(data){
-            //handle error
-            $scope.errorStatus = JSON.parse(JSON.stringify(response.data));
-        });
-}]);;/**
  ** Description :: HomeController /home
-*/
+ */
 
 ltkApp.controller("HomeController", function($scope, $window, $http, Request, model){
 
-  //initializing controller with current_user model.
+    //initializing controller with current_user model.
 
-  $scope.init = (function(){
-    $scope.model = model;
-  })();
+    $scope.init = (function(){
+        $scope.model = model;
+
+        //getting talents
+        Request.url("/api/talents").then(function(value){
+            $scope.talents = value;
+        });
+
+        //getting Follows
+        Request.url("/api/user_follows/" + $scope.model._id)
+            .then(function(follows){
+                //for each follows
+                for (var i = 0; i < follows.length; i++)
+                    //Using callBack to save iterator i value
+                    (function(i){
+                        //get Unread notifications
+                        var unreadNotif = Request.url("/api/notifications/unread/" + follows[i].following._id + "/" + model._id)
+                            .then(function(notifs){
+                                console.log("I="+i);
+                                //save count Value
+                                follows[i].count_notifications = notifs.length;
+                                //update scope
+                                $scope.follows = follows;
+                            }
+                        );
+                    })(i);
+                console.log(JSON.parse(JSON.stringify(follows)));
+            });
+    })();
 });
 ;/**
  ** Description :: NewPostController /home
@@ -35437,21 +35459,3 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model){
   })();
 */
 });
-;/**
- * Created by gladisk on 12/25/14.
- */
-/**
- ** Description :: TalentListController /home
- */
-
-ltkApp.controller('TalentController', ['$scope', '$http', function($scope, $http) {
-    $scope.talents = null;
-    $http.get('api/talents/').
-        success(function(data) {
-            $scope.talents = data;
-        }).
-        error(function(data){
-            //handle error
-            $scope.errorStatus = JSON.parse(JSON.stringify(response.data));
-        });
-}]);

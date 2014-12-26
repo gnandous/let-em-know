@@ -107,6 +107,22 @@ module.exports = {
                 return res.send(404);
             res.json(follow);
         });
+    },
+    // =======================================================================//
+    // ! Implements User followings::action.                                  //
+    // =======================================================================//
+
+    userFollows: function(req, res, next){
+        var followerId = req.param('id');
+
+        Follow.find({'follower': followerId})
+            .populate('following')
+            .exec(function(err, follows){
+                if (err){
+                    return res.status(400).send(err);
+                }
+                return res.status(200).send(follows);
+            });
     }
 }
 

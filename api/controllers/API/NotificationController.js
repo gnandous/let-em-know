@@ -36,6 +36,24 @@ module.exports = {
     },
 
     // =======================================================================//
+    // ! Implements count Unread notification:: function.                        //
+    // =======================================================================//
+
+    unreadNotifications: function(req, res, next){
+        var from = req.param('from');
+        var to = req.param('to');
+
+        Notification.find({from: from, to:to, read:false})
+            .populate('target')
+            .exec(function (err, notification){
+                if(err)
+                    return res.json(500, err);
+                if(!notification)
+                    return res.send(204);
+                res.json(notification);
+            });
+    },
+    // =======================================================================//
     // ! Implements create::action.                                           //
     // =======================================================================//
 
