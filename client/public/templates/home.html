@@ -8,23 +8,24 @@
     <section menutalents></section>
 </nav>
 
+<!--Filter-->
+<nav class="story_filter after_left_menu ">
+   <ul class="navbar navbar-default nav nav-pills">
+        <li class="presentation active"><a href="#">All</a></li>
+       <li class="presentation"><a href="#">Images</a></li>
+        <li class="presentation"><a href="#">Videos</a></li>
+       <li class="presentation"><a href="#">Musics</a></li>
+    </ul>
+</nav>
+
 <!-- Main Content -->
-<section class="main_content under_header after_left_menu" ng-init="friends = [
-  {name:'John', age:25, gender:'boy'},
-  {name:'Jessie', age:30, gender:'girl'},
-  {name:'Johanna', age:28, gender:'girl'},
-  {name:'Joy', age:15, gender:'girl'},
-  {name:'Mary', age:28, gender:'girl'},
-  {name:'Peter', age:95, gender:'boy'},
-  {name:'Sebastian', age:50, gender:'boy'},
-  {name:'Erika', age:27, gender:'girl'},
-  {name:'Patrick', age:40, gender:'boy'},
-  {name:'Samantha', age:60, gender:'girl'}
-]">
-    <nav post_filter></nav>
-    <div ng-repeat="friend in friends">
-       <div post></div>
-    </div>
+<section class="home_main_content after_left_menu">
+    <article ng-repeat="story in stories" class="story">
+        <div storypost ng-if="story.verb == 'post'"></div>
+        <div storyfollow ng-if="story.verb == 'follow'"></div>
+        <div storycomment ng-if="story.verb == 'comment'"></div>
+    </article>
 </section>
+
 <!-- Footer -->
 <footer footer></footer>

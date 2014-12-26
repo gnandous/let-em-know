@@ -33,7 +33,22 @@ module.exports = {
                 return res.status(200).send(comment);
             });
     },
+    // =======================================================================//
+    // ! Implements postComment::action.                                      //
+    // =======================================================================//
 
+    postComments: function(req, res, next){
+        var postId = req.param('post_id');
+
+        Comment.find({post: postId})
+            .populate('creator')
+            .exec(function(err, comment){
+                if (err){
+                    return res.status(400).send(err);
+                }
+                return res.status(200).send(comment);
+            });
+    },
     // =======================================================================//
     // ! Implements create::action.                                           //
     // =======================================================================//

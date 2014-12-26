@@ -75,6 +75,7 @@ module.exports = function(passport){
 
     ApiRouter.get('/comments', controllers.api.comment.index);
     ApiRouter.get('/comment/:id', controllers.api.comment.read);
+    ApiRouter.get('/post_comments/:post_id', controllers.api.comment.postComments);
     ApiRouter.get('/comment/:id/remove', controllers.api.comment.destroy);
 
     // =======================================================================//
@@ -89,7 +90,8 @@ module.exports = function(passport){
 
     ApiRouter.get('/follows', controllers.api.follow.index);
     ApiRouter.get('/follow/:id', controllers.api.follow.read);
-    ApiRouter.get('/user_follows/:id', controllers.api.follow.userFollows);
+    ApiRouter.get('/user_followings/:id', controllers.api.follow.userFollowings);
+    ApiRouter.get('/user_followers/:id', controllers.api.follow.userFollowers);
     ApiRouter.get('/follow/:id/remove', controllers.api.follow.destroy);
 
     // =======================================================================//

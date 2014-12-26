@@ -13,10 +13,15 @@
 
 // ********************************** START ******************************//
 
+var Post = require("../../models/PostModel");
+var Comment = require("../../models/CommentModel");
+var Follow = require("../../models/FollowModel");
 var Story = require("../../models/StoryModel");
 var _ = require("underscore");
 
+
 module.exports = {
+
 
     // =======================================================================//
     // ! Implements index::action.                                            //
@@ -25,11 +30,34 @@ module.exports = {
     index: function(req, res, next){
         Story.find()
             .populate('creator')
-            .exec(function(err, story){
+            .exec(function(err, stories){
                 if (err){
                     return res.status(400).send(err);
                 }
-                return res.status(200).send(story);
+
+                Story.populateTarget(0, stories, res);
+                /*for (var i=0; i < stories.length; i++){
+                    (function(i_tmp){
+                        if (stories[i_tmp].verb == "post"){
+                            Post.populate(stories, { path: 'target' }, function (err, stories) {
+                                if (i_tmp + 1 == stories.length)
+                                   return res.status(200).send(stories);
+                            });
+                        }
+                        if (stories[i_tmp].verb == "follow"){
+                            Comment.populate(stories, { path: 'target' }, function (err, stories) {
+                                if (i_tmp + 1 == stories.length)
+                                    return res.status(200).send(stories);
+                            });
+                        }
+                        if (stories[i_tmp].verb == "comment"){
+                            Follow.populate(stories, { path: 'target' }, function (err, stories) {
+                                if (i_tmp + 1 == stories.length)
+                                    return res.status(200).send(stories);
+                            });
+                        }
+                    })(i);
+                }*/
             });
     },
 

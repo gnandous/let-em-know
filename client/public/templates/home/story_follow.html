@@ -1,0 +1,15 @@
+<p class="story_follow media">
+    <!--Date-->
+    <span class="date text-muted pull-right">
+        {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}
+    </span>
+
+    <!--Avatar-->
+    <a class="avatar_link">
+        <img class="avatar_medium img-circle" ng-src="http://fast1.onesite.com/capcom-unity.com/user/gregaman/blog_photos/c5de6db54d4bb48a723c7da4a8a2fdbc.png?v=57600" alt="avatar">
+        {{story.creator.pseudo | capitalize}}
+    </a>
+
+    <!--Story Message-->
+    is now following you.
+</p>

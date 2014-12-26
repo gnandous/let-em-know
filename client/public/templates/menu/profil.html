@@ -3,12 +3,13 @@
         <h3 class="panel-title">Profil</h3>
     </div>
     <div class="media">
-        <a class="pull-left" href="#">
-            <img class="avatar_medium img-circle" src="http://fc08.deviantart.net/fs70/f/2010/113/1/9/SF_Ryu_Avatar_01_by_PimplyPete.png" alt="my_avatar">
+        <a class="avatar_link pull-left" href="#">
+            <img class="avatar_large img-circle" src="http://fc08.deviantart.net/fs70/f/2010/113/1/9/SF_Ryu_Avatar_01_by_PimplyPete.png" alt="my_avatar">
         </a>
         <div class="media-body">
             <h4 class="media-heading">{{model.pseudo | capitalize}}</h4>
-            XXX Posts
+            <p class="small">XXX Posts</p>
+            <p class="small">{{followers.length || "No"}} Followers</p>
         </div>
     </div>
 </div>

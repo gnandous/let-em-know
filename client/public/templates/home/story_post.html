@@ -1,0 +1,81 @@
+<div class='panel story_post'>
+    <!--========================================
+    HEADER
+    ============================================-->
+    <header class="panel-heading">
+        <!--Date-->
+        <span class="date text-muted pull-right">
+            {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}
+        </span>
+
+        <!--Avatar-->
+        <a class="avatar_link">
+            <img class="avatar_medium img-circle" ng-src="http://fast1.onesite.com/capcom-unity.com/user/jgonzo/79a161be5513fc9158e67efa673d08b8.png?v=57600" alt="avatar">
+            {{story.creator.pseudo | capitalize}}
+        </a>
+
+        <!--Story Message-->
+        added a new post <a href="#">{{story.target.title}}</a>.
+    </header>
+
+    <!--========================================
+    BODY
+    ============================================-->
+    <div class="panel-body body">
+
+        <!--========================================
+        POST COMMENTS
+        ============================================-->
+        <section class="post_comments pull-right">
+            <h4 class="text-right text-muted">Comments</h4>
+            <ul class="list-group">
+
+                <li ng-repeat="comment in story.target.comments" class="list-group-item media">
+                    <!--Avatar-->
+                    <a href="#" class="avatar_link pull-left">
+                        <img class="avatar_medium img-circle" ng-src="http://fast1.onesite.com/capcom-unity.com/user/jgonzo/79a161be5513fc9158e67efa673d08b8.png?v=57600" alt="avatar">
+                    </a>
+                    <p class="media-heading">
+                        <a href="#">{{comment.creator.pseudo | capitalize}}</a>
+                    </p>
+                    <p class="message media-body">
+                      {{comment.message}}
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <!--========================================
+        POST CONTENT
+        ============================================-->
+        <section class="post_content">
+            <!--Media-->
+            <div class="post_media">
+                <img ng-src="http://img0.gm.gtsstatic.com/wallpapers/0c4f06b13e730af5c09253bfce150722_large.jpeg" alt="post media"/>
+            </div>
+
+            <!--Infos-->
+            <div class="post_info">
+                <button class="btn btn-primary pull-right">Follow {{story.creator.pseudo | capitalize}}</button>
+                <h3><a href="#">{{story.target.title}}</a></h3>
+
+                <p class="text-muted">
+                    <button class="btn btn-default">Like</button>
+                    <span>XXX likes</span>
+                </p>
+            </div>
+        </section>
+
+
+    </div>
+
+    <!--========================================
+    FOOTER
+    ============================================-->
+    <footer class="panel-footer">
+        <form class="form-inline">
+            <input type="text" class="form-control input_comment" name="comment" placeholder="Comment the post">
+            <button type="submit" class="btn btn-primary send">Send Comment</button>
+        </form>
+    </footer>
+</div>

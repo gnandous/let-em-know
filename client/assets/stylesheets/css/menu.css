@@ -1,6 +1,11 @@
 .menu{
     margin-left: 10px;
     width: 200px;
+    position: fixed;
+    top:56px;
+}
+.menu .panel{
+    border:none
 }
 /*=============================================
 * MENU PROFIL

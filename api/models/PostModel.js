@@ -19,7 +19,7 @@ var User = require("./UserModel");
 var _ = require("underscore");
 
 var PostSchema = new mongoose.Schema ({
-    title : {type : String},
+    title : {type : String, required : true},
     creator : {type : mongoose.Schema.ObjectId, ref: 'User', required : true},
     tags : [{type : mongoose.Schema.ObjectId, ref: 'Talent'}],
     content : {type : String},

@@ -1,0 +1,12 @@
+.main_header .logo{
+    height:40px;
+    width: 100px;
+    float:left;
+    margin-right: 20px;
+    margin-left: calc(200px - 100px - 40px); /*left menu width - logo image width - margin*/
+}
+.main_header .search_bar{
+    margin-top:10px;
+    width: 50vw;
+    max-height: 40px;
+}

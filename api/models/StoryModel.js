@@ -46,6 +46,34 @@ StorySchema.path('creator').validate(function(value, respond){
     });
 }, "User is not found");
 
-
+StorySchema.statics.populateTarget = function(index, stories, res){
+    if (stories[index].verb == "post"){
+        Post.populate(stories[index], { path: 'target', model: 'Post'}, function (err, story) {
+            stories[index] = story;
+            if (index + 1 == stories.length)
+                return res.status(200).send(stories);
+            else
+                return StorySchema.statics.populateTarget(index + 1, stories, res);
+        });
+    }
+    if (stories[index].verb == "follow"){
+        Follow.populate(stories[index], { path: 'target', model: 'Follow'}, function (err, story) {
+            stories[index] = story;
+            if (index + 1 == stories.length)
+                return res.status(200).send(stories);
+            else
+                return StorySchema.statics.populateTarget(index + 1, stories, res);
+        });
+    }
+    if (stories[index].verb == "comment"){
+        Comment.populate(stories[index], { path: 'target', model: 'Comment'}, function (err, story) {
+            stories[index] = story;
+            if (index + 1 == stories.length)
+                return res.status(200).send(stories);
+            else
+                return StorySchema.statics.populateTarget(index + 1, stories, res);
+        });
+    }
+}
 module.exports = mongoose.model('Story', StorySchema);
 
