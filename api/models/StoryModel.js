@@ -53,15 +53,23 @@ StorySchema.statics.populateStoriesTarget = function(stories, callback){
   var uids = stories.slice();
   (function next(){
     if (!uids.length) return callback(null, acc);
-    var uid = uids.pop()
+    var uid = uids.pop();
 
     // handle post type
 
     if (uid.target.type === "POST"){
-      uid.populate({path : 'target.object', model : 'Post'}, function(err, storie){
+      uid.populate({path : 'target.object', model : 'Post'}, function(err, story){
           if (err) return callback(err);
-          acc.push(storie);
-          next();
+
+          Comment.find({post: story.target.object._id})
+              .populate('creator')
+              .exec(function(err, comments){
+                    if (err) return callback(err);
+                        var commented_story = JSON.parse(JSON.stringify(story));
+                        commented_story.target.object.comments = comments;
+                        acc.push(commented_story);
+                        next();
+                    });
       })
     }
 

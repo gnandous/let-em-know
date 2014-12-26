@@ -15,7 +15,7 @@
         </a>
 
         <!--Story Message-->
-        added a new post <a href="#">{{story.target.title}}</a>.
+        added a new post <a href="#">{{story.target.object.title}}</a>.
     </header>
 
     <!--========================================
@@ -30,7 +30,7 @@
             <h4 class="text-right text-muted">Comments</h4>
             <ul class="list-group">
 
-                <li ng-repeat="comment in story.target.comments" class="list-group-item media">
+                <li ng-repeat="comment in story.target.object.comments" class="list-group-item">
                     <!--Avatar-->
                     <a href="#" class="avatar_link pull-left">
                         <img class="avatar_medium img-circle" ng-src="http://fast1.onesite.com/capcom-unity.com/user/jgonzo/79a161be5513fc9158e67efa673d08b8.png?v=57600" alt="avatar">
@@ -57,7 +57,7 @@
             <!--Infos-->
             <div class="post_info">
                 <button class="btn btn-primary pull-right">Follow {{story.creator.pseudo | capitalize}}</button>
-                <h3><a href="#">{{story.target.title}}</a></h3>
+                <h3><a href="#">{{story.target.object.title}}</a></h3>
 
                 <p class="text-muted">
                     <button class="btn btn-default">Like</button>

@@ -35,6 +35,24 @@ module.exports = {
     },
 
     // =======================================================================//
+    // ! Implements User_post::action.                                            //
+    // =======================================================================//
+
+    user_posts: function(req, res, next){
+        var userId = req.param('user_id');
+
+        Post.find({creator: userId})
+            .populate('creator')
+            .populate('tags')
+            .exec(function(err, post){
+                if (err){
+                    return res.status(400).send(err);
+                }
+                return res.status(200).send(post);
+            });
+    },
+
+    // =======================================================================//
     // ! Implements create::action.                                           //
     // =======================================================================//
 

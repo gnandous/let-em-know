@@ -31,35 +31,12 @@ module.exports = {
 
         Story.find()
             .populate('creator')
-            .exec(function(err, stories){
+            .exec(function(err, story){
                 if (err){
                     return res.status(400).send(err);
                 }
 
-                //Story.populateTarget(0, stories, res);
-                /*for (var i=0; i < stories.length; i++){
-                    (function(i_tmp){
-                        if (stories[i_tmp].verb == "post"){
-                            Post.populate(stories, { path: 'target' }, function (err, stories) {
-                                if (i_tmp + 1 == stories.length)
-                                   return res.status(200).send(stories);
-                            });
-                        }
-                        if (stories[i_tmp].verb == "follow"){
-                            Comment.populate(stories, { path: 'target' }, function (err, stories) {
-                                if (i_tmp + 1 == stories.length)
-                                    return res.status(200).send(stories);
-                            });
-                        }
-                        if (stories[i_tmp].verb == "comment"){
-                            Follow.populate(stories, { path: 'target' }, function (err, stories) {
-                                if (i_tmp + 1 == stories.length)
-                                    return res.status(200).send(stories);
-                            });
-                        }
-                    })(i);
-                }*/
-                Story.populateStories(story, function(err, stories){
+                Story.populateStoriesTarget(story, function(err, stories){
                   if (err)
                     return next(err);
                   return res.status(200).send(stories);

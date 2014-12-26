@@ -14,6 +14,11 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
             $scope.talents = value;
         });
 
+        //getting Current User posts
+        Request.url("/api/user_posts/" + $scope.model._id).then(function(value){
+            $scope.user_posts = value;
+        });
+
         //getting Followings
         Request.url("/api/user_followings/" + $scope.model._id)
             .then(function(follows){
@@ -44,33 +49,6 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         //getting Stories
         Request.url("/api/stories/").then(function(stories){
             $scope.stories = stories;
-            for (var i = 0; i < stories.length; i++)
-                //Using callBack to save iterator i value
-                (function(i){
-                    //get Target
-                    Request.url("/api/" + stories[i].verb + "/" + stories[i].target)
-                        .then(function(target){
-                            //if post
-                            if (target.post_type){
-                                //get comments
-                                Request.url("/api/post_comments/" + target._id)
-                                    .then(function(comments){
-                                        target.comments = comments;
-                                        //Update scope
-                                        stories[i].target = target;
-                                        $scope.stories = stories;
-                                        console.log("POST:");
-                                        console.log(JSON.parse(JSON.stringify(target)));
-                                    });
-                            }
-                            else{
-                                //Update scope
-                                stories[i].target = target;
-                                $scope.stories = stories;
-                                console.log(JSON.parse(JSON.stringify(target)));
-                            }
-                        });
-                })(i);
         });
     })();
 });

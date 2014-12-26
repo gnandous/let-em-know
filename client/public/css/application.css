@@ -10788,6 +10788,9 @@ body {
     width: 50vw;
     max-height: 40px;
 }
+.main_header .search_bar button{
+    line-height: 1.2;
+}
 /*=============================================
 * Story Filter (Nav)
 *==============================================*/

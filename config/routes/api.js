@@ -60,6 +60,7 @@ module.exports = function(passport){
     /* @all post get methods */
 
     ApiRouter.get('/posts', controllers.api.post.index);
+    ApiRouter.get('/user_posts/:user_id', controllers.api.post.user_posts);
     ApiRouter.get('/post/:id', controllers.api.post.read);
     ApiRouter.get('/post/:id/remove', controllers.api.post.destroy);
 
