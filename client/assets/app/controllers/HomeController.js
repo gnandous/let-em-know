@@ -34,5 +34,11 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
                     })(i);
                 console.log(JSON.parse(JSON.stringify(follows)));
             });
+
+        //getting Stories
+        Request.url("/api/stories/").then(function(stories){
+            $scope.stories = stories;
+
+        });
     })();
 });
