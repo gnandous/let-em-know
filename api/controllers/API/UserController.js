@@ -11,6 +11,7 @@
 
 
 var User = require("../../models/UserModel");
+var Story = require("../../models/StoryModel");
 var bcrypt = require("bcrypt");
 var validator = require("../../helpers/validator");
 var _ = require("underscore");
@@ -191,7 +192,9 @@ module.exports = {
   // =======================================================================//
 
   current: function(req, res, next){
-    res.send(req.user);
+    if (req.user){
+      res.send(req.user);
+    }
   }
 
 }

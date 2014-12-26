@@ -46,6 +46,48 @@ StorySchema.path('creator').validate(function(value, respond){
     });
 }, "User is not found");
 
+// Mongoose statics
+
+StorySchema.statics.populateStories = function(stories, callback){
+  var acc = [];
+  var uids = stories.slice();
+  (function next(){
+    if (!uids.length) return callback(null, acc);
+    var uid = uids.pop()
+
+    // handle post type
+
+    if (uid.target.type === "POST"){
+      uid.populate({path : 'target.object', model : 'Post'}, function(err, storie){
+          if (err) return callback(err);
+          acc.push(storie);
+          next();
+      })
+    }
+
+    // handle Comment type
+    else if (uid.target.type === "COMMENT"){
+      uid.populate({path : 'target.object', model : 'Comment'}, function(err, storie){
+          if (err) return callback(err);
+          acc.push(storie);
+          next();
+      })
+    }
+
+    // handle follow type
+
+    else if (uid.target.type === "FOLLOW"){
+      uid.populate({path : 'target.object', model : 'Follow'}, function(err, storie){
+          if (err) return callback(err);
+          acc.push(storie);
+          next();
+      })
+    }
+
+
+
+  })();
+}
 
 module.exports = mongoose.model('Story', StorySchema);
 

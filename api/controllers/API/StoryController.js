@@ -23,13 +23,18 @@ module.exports = {
     // =======================================================================//
 
     index: function(req, res, next){
+
         Story.find()
             .populate('creator')
             .exec(function(err, story){
                 if (err){
                     return res.status(400).send(err);
                 }
-                return res.status(200).send(story);
+                Story.populateStories(story, function(err, stories){
+                  if (err)
+                    return next(err);
+                  return res.status(200).send(stories);
+                });
             });
     },
 
