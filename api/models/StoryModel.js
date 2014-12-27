@@ -47,7 +47,6 @@ StorySchema.path('creator').validate(function(value, respond){
 }, "User is not found");
 
 // Mongoose statics
-
 StorySchema.statics.populateStories = function(stories, callback){
   var acc = [];
   var uids = stories.slice();

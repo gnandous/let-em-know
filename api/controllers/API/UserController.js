@@ -11,7 +11,6 @@
 
 
 var User = require("../../models/UserModel");
-var Story = require("../../models/StoryModel");
 var bcrypt = require("bcrypt");
 var validator = require("../../helpers/validator");
 var _ = require("underscore");

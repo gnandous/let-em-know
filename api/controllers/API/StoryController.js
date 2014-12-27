@@ -30,6 +30,7 @@ module.exports = {
                 if (err){
                     return res.status(400).send(err);
                 }
+
                 Story.populateStories(story, function(err, stories){
                   if (err)
                     return next(err);
