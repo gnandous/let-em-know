@@ -131,7 +131,7 @@ module.exports = {
     userFollowers: function(req, res, next){
         var followingId = req.param('id');
 
-        Follow.find({'following': followerId})
+        Follow.find({'following': followingId})
             .populate('follower')
             .exec(function(err, follows){
                 if (err){

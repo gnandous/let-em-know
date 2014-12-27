@@ -2,7 +2,7 @@
  ** Description :: NewPostController /home
 */
 
-ltkApp.controller("NewPostController", function($scope, $window, $http, model, talents){
+ltkApp.controller("NewPostController", function($scope, $window, $http, model, talents, $location){
 
   //initializing controller with current_user model.
   $scope.init = (function(){
@@ -101,6 +101,7 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
       success(function(data, status, headers, config) {
         $scope.resErr = false;
         console.log(data);
+        $location.path( "/home" );
       }).
       error(function(data, status, headers, config) {
         if (data){
