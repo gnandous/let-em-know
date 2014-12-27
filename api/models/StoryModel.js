@@ -13,9 +13,7 @@
 // ********************************** START ******************************//
 
 var mongoose = require('mongoose');
-var Follow = require("./FollowModel");
-var Comment = require("./CommentModel");
-var Post = require("./PostModel");
+var Comment = require('./CommentModel');
 var User = require("./UserModel");
 var _ = require("underscore");
 

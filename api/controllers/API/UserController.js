@@ -13,6 +13,7 @@
 var User = require("../../models/UserModel");
 var Notification = require("../../models/NotificationModel");
 var Story = require("../../models/StoryModel");
+
 var bcrypt = require("bcrypt");
 var validator = require("../../helpers/validator");
 var _ = require("underscore");
