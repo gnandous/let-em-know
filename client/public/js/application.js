@@ -36828,6 +36828,7 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         //getting Stories
         Request.url("/api/stories/").then(function(stories){
             $scope.stories = stories;
+
         });
     })();
 
@@ -36844,7 +36845,6 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
                 creator: model._id,
                 post: post._id
             }
-         alert(JSON.stringify(data));
             //Request to add comment
             Request.post("/api/comment/", data).then(function(comment){
                 comment.creator = model;
@@ -36852,6 +36852,17 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
 
                 //empty input and var
                 post.new_comment = '';
+
+                //add new story to scope
+                var comment_story = {
+                    verb : "comment",
+                    creator: model,
+                    target: {
+                        object: comment,
+                        type: "COMMENT"
+                    }
+                };
+                $scope.stories.unshift(comment_story); //add as first elem of array
             });
     }
 
