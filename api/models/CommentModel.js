@@ -14,6 +14,7 @@
 
 var mongoose = require('mongoose');
 var Story = require("./StoryModel");
+var Post = require("./PostModel");
 var User = require("./UserModel");
 var _ = require("underscore");
 
@@ -47,6 +48,16 @@ CommentSchema.path('post').validate(function(value, respond){
 // After saving comment We must create a Storie
 
 CommentSchema.post('save', function (doc) {
+  //Update the post
+  Post.findOne({_id: doc.post}, function(err, post){
+        var updated_comments = post.comments;
+        updated_comments.push(doc);
+
+        Post.findOneAndUpdate({_id: post._id}, {comments: updated_comments},
+            function(err, post){
+               if (err) return false;
+            });
+  });
   // create the associate story
   story = new Story({
     verb : "comment",

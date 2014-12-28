@@ -22,6 +22,7 @@ var PostSchema = new mongoose.Schema ({
     title : {type : String, required : true},
     creator : {type : mongoose.Schema.ObjectId, ref: 'User', required : true},
     tags : [{type : mongoose.Schema.ObjectId, ref: 'Talent'}],
+    comments : [{type : mongoose.Schema.ObjectId, ref: 'Comment'}],
     content : {type : String},
     published_date : {type : Date, default : Date.now},
     post_type : {type : String, required : true, enum: ["video", "image","audio"]}

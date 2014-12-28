@@ -36669,6 +36669,17 @@ ltkApp.factory('Request', function ($cookies, $rootScope, $q, $window, $http) {
             deferred.reject(status); // rejecting the promise in error case
           });
         return deferred.promise; // returning the promise
+      },
+      post : function(url, post_data){
+          var deferred = $q.defer(); // using promise in case the function had to be called asynchronously
+          $http.post(url, post_data).
+              success(function(data, status, headers, config) {
+                  deferred.resolve(data); // resolving the promise in success case
+              }).
+              error(function(data, status, headers, config) {
+                  deferred.reject(status); // rejecting the promise in error case
+              });
+          return deferred.promise; // returning the promise
       }
   }
 
@@ -36769,6 +36780,9 @@ ltkApp.directive('menutalents', function(){
 
 ltkApp.controller("HomeController", function($scope, $window, $http, Request, model){
 
+    //======================================================
+    //INIT / RETRIEVE DATAS
+    //======================================================
     //initializing controller with current_user model.
 
     $scope.init = (function(){
@@ -36814,8 +36828,45 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         //getting Stories
         Request.url("/api/stories/").then(function(stories){
             $scope.stories = stories;
+
         });
     })();
+
+    //======================================================
+    //FUNCTIONS
+    //======================================================
+
+    //===================
+    //Send Comment
+    //===================
+    $scope.sendComment = function(post){
+            var data = {
+                message : post.new_comment,
+                creator: model._id,
+                post: post._id
+            }
+            //Request to add comment
+            Request.post("/api/comment/", data).then(function(comment){
+                comment.creator = model;
+                post.comments.push(comment);
+
+                //empty input and var
+                post.new_comment = '';
+
+                //add new story to scope
+                var comment_story = {
+                    verb : "comment",
+                    creator: model,
+                    target: {
+                        object: comment,
+                        type: "COMMENT"
+                    }
+                };
+                $scope.stories.unshift(comment_story); //add as first elem of array
+            });
+    }
+
+
 });
 ;/**
  ** Description :: NewPostController /home

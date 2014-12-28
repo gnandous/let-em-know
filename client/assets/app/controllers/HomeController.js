@@ -4,6 +4,9 @@
 
 ltkApp.controller("HomeController", function($scope, $window, $http, Request, model){
 
+    //======================================================
+    //INIT / RETRIEVE DATAS
+    //======================================================
     //initializing controller with current_user model.
 
     $scope.init = (function(){
@@ -49,6 +52,43 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         //getting Stories
         Request.url("/api/stories/").then(function(stories){
             $scope.stories = stories;
+
         });
     })();
+
+    //======================================================
+    //FUNCTIONS
+    //======================================================
+
+    //===================
+    //Send Comment
+    //===================
+    $scope.sendComment = function(post){
+            var data = {
+                message : post.new_comment,
+                creator: model._id,
+                post: post._id
+            }
+            //Request to add comment
+            Request.post("/api/comment/", data).then(function(comment){
+                comment.creator = model;
+                post.comments.push(comment);
+
+                //empty input and var
+                post.new_comment = '';
+
+                //add new story to scope
+                var comment_story = {
+                    verb : "comment",
+                    creator: model,
+                    target: {
+                        object: comment,
+                        type: "COMMENT"
+                    }
+                };
+                $scope.stories.unshift(comment_story); //add as first elem of array
+            });
+    }
+
+
 });

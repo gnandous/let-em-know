@@ -87,7 +87,7 @@
 
 }
 .story_post .post_comments ul{
-    max-height: 500px;
+    max-height: 300px;
     min-height: 200px;
     overflow-y: scroll;
 
