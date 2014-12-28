@@ -50,7 +50,7 @@
         ============================================-->
         <section class="post_content">
             <!--Media-->
-            <div class="post_media">
+            <div id="post_media_{{$index}}" class="post_media">
                 <img ng-src="{{story.target.object.content}}" alt="post media"/>
             </div>
 
@@ -73,9 +73,11 @@
     FOOTER
     ============================================-->
     <footer class="panel-footer">
-        <form class="form-inline">
-            <input type="text" class="form-control input_comment" name="comment" placeholder="Comment the post">
+        <form ng-submit='sendComment(story.target.object)' class="form-inline">
+            <input ng-model='story.target.object.new_comment' type="text" class="form-control input_comment" name="comment" placeholder="Comment the post">
             <button type="submit" class="btn btn-primary send">Send Comment</button>
         </form>
     </footer>
 </div>
+
+
