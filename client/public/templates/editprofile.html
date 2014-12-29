@@ -1,0 +1,50 @@
+<!-- include navbar -->
+<div header></div>
+<!-- Main content -->
+<div class='page'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-7 col-md-offset-2'>
+        <div class='panel'>
+          <div class='panel-body'>
+            <!-- user avatar change -->
+
+            <div class='edit_avatar'>
+              <h1>My informations</h1>
+              <img class="user_avatar" alt="avatar" src="http://data1.whicdn.com/images/32567563/original.jpg" width="100" height="100">
+              <div class='uploadbarcontainer'>
+                <div class="uploadbar"></div>
+              </div>
+              <button type="button" class="btn btn-default" ng-click="uploadImage()">Modifier</button>
+              <form id="uploadStart" action="/api/medias">
+                <input type="file" id='attached_file' onchange="angular.element(this).scope().loadFileFromDesktop(this)" >
+              </form>
+            </div>
+
+            <!-- form for edit -->
+            <form class='edit_profile_action'>
+              <input type="hidden" ng-model="user.avatar">
+              <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input type="text" ng-class="{ edit_input : user.firstname}" class="form-control" id="firstname"  name="firstname" ng-model="user.firstname">
+              </div>
+              <div class="form-group">
+                <label for="lastname">lastname</label>
+                <input type="text" ng-class="{ edit_input : user.lastname}" class="form-control" id="lastname"  name="lastname" ng-model="user.lastname">
+              </div>
+              <div class="form-group">
+                <label for="pseudo">Pseudo</label>
+                <input type="text" ng-class="{ edit_input : user.pseudo}" class="form-control edit_input" id="pseudo"  name="pseudo" ng-model="user.pseudo">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" ng-class="{ edit_input : user.email}" class="form-control edit_input" id="email"  name="email" ng-model="user.email">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10683,6 +10683,12 @@ Copyright (c) 2014 Daniel Eden
   content: "\f20c";
 }
 /*My application less file*/
+.page {
+  margin-top: 50px;
+}
+.edit_input {
+  background-color: #e8e8e8;
+}
 /**
  ** Styles relative to body
 */
@@ -10734,6 +10740,30 @@ body {
 }
 .dropzonecontainer #dpz-action .fa-times {
   font-size: 45px;
+}
+.edit_avatar {
+  position: relative;
+  margin-bottom: 20px;
+}
+.edit_avatar button {
+  position: absolute;
+  top: 49px;
+  left: 115px;
+}
+.edit_avatar h1 {
+  margin-top: 0px;
+}
+.edit_avatar #attached_file {
+  display: none;
+}
+.edit_avatar .uploadbarcontainer {
+  width: 100px;
+  margin-top: 10px;
+}
+.edit_avatar .uploadbar {
+  width: 0%;
+  background-color: #4285f4;
+  height: 8px;
 }
 .under_header{
     margin-top: 70px;

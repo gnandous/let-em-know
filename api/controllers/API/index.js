@@ -7,5 +7,6 @@ module.exports = {
     like: require('./LikeController'),
     story: require('./StoryController'),
     notification: require('./NotificationController'),
-    welcome: require('./WelcomeController')
+    welcome: require('./WelcomeController'),
+    medias: require('./MediaController')
 }
