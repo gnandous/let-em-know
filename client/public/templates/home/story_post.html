@@ -54,11 +54,13 @@
                 <img ng-src="{{story.target.object.content}}" alt="post media"/>
             </div>
 
-            <!--Infos-->
+            <!--Action-->
             <div class="post_info">
+                <!--Follow-->
                 <button class="btn btn-primary pull-right">Follow {{story.creator.pseudo | capitalize}}</button>
                 <h3><a href="#">{{story.target.object.title}}</a></h3>
 
+                <!--Like-->
                 <p class="text-muted">
                     <button class="btn btn-default">Like</button>
                     <span>XXX likes</span>

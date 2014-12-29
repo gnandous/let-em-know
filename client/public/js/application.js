@@ -36788,6 +36788,9 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
     $scope.init = (function(){
         $scope.model = model;
 
+        //init story filter
+        $scope.story_filter = 'all';
+
         //getting talents
         Request.url("/api/talents").then(function(value){
             $scope.talents = value;
@@ -36836,6 +36839,29 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
     //FUNCTIONS
     //======================================================
 
+    //===================
+    //Story filter
+    //===================
+    $scope.setStoryFilter =  function(filter){
+        $scope.story_filter = filter;
+    }
+    $scope.filter_allows = function(story){
+        //Allows every type
+        if ($scope.story_filter == "all")
+            return true;
+
+        //Allows comments, follows and likes only
+        if ($scope.story_filter == story.verb)
+            return true;
+
+        //Allows post only
+        if (story.verb == 'post'){
+            if ($scope.story_filter == story.target.object.post_type)
+                return true;
+        }
+
+        return false;
+    }
     //===================
     //Send Comment
     //===================
