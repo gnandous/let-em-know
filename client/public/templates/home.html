@@ -16,6 +16,7 @@
        <li ng-click='setStoryFilter("video")' class="presentation {{story_filter == 'video' ? 'active' : ''}}"><a href="#">Videos</a></li>
        <li ng-click='setStoryFilter("follow")' class="presentation {{story_filter == 'follow' ? 'active' : ''}}"><a href="#">Follows</a></li>
        <li ng-click='setStoryFilter("comment")' class="presentation {{story_filter == 'comment' ? 'active' : ''}}"><a href="#">Comments</a></li>
+       <li ng-click='setStoryFilter("like")' class="presentation {{story_filter == 'like' ? 'active' : ''}}"><a href="#">Likes</a></li>
     </ul>
 </nav>
 
@@ -25,6 +26,7 @@
         <div storypost ng-if="story.verb == 'post'"></div>
         <div storyfollow ng-if="story.verb == 'follow'"></div>
         <div storycomment ng-if="story.verb == 'comment'"></div>
+        <div storylike ng-if="story.verb == 'like'"></div>
     </article>
 </section>
 

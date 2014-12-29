@@ -36756,6 +36756,12 @@ ltkApp.directive('storycomment', function(){
         restrict: 'A',
         templateUrl: "/templates/home/story_comment.html"
     }
+});
+ltkApp.directive('storylike', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/home/story_like.html"
+    }
 });;/*Directives menu*/
 ltkApp.directive('menuprofil', function(){
     return {
@@ -36828,6 +36834,11 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
             $scope.user_posts = value;
         });
 
+        //getting Current User Likes
+        Request.url("/api/user_likes/" + $scope.model._id).then(function(value){
+            $scope.likes = value;
+        });
+
 
 
         //getting Stories
@@ -36878,10 +36889,6 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         }
         //Request to add follow to DB
         Request.post("/api/follow/", data).then(function(new_follow){
-            //return if already in list
-            var index = $scope.getFollowIndex(new_follow.following);
-            if (index > 0)
-                return;
 
             //add new follow to list
             data.follower = model;
@@ -36931,6 +36938,71 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         }
         return -1;
     }
+
+    //===================
+    //Likes
+    //===================
+
+    //-------Like action-------
+
+    $scope.like = function(post){
+        var data = {
+            user: model._id,
+            post: post._id,
+            value: 1
+        }
+        //Request to add like to DB
+        Request.post("/api/like/", data).then(function(new_like){
+
+            //add new like to list
+            data.user = model;
+            data.post = post;
+            $scope.likes.push(data);
+
+            //add new story to scope
+            new_like.user = model;
+            new_like.post = post;
+            var like_story = {
+                verb : "like",
+                creator: model,
+                target: {
+                    object: new_like,
+                    type: "LIKE"
+                }
+            };
+            $scope.stories.unshift(like_story); //add as first elem of array
+        });
+    }
+
+    //-------Unlike action------------
+
+    $scope.unlike = function(post){
+        //return if the likes is not in list
+        var index = $scope.getLikeIndex(post);
+        if (index == -1)
+            return;
+
+        //remove likes from list
+        $scope.likes.splice(index, 1);
+
+        //Request to remove like to DB
+        Request.url("/api/unlike/" + model._id + "/" + post._id).then(function(like){
+            //nothing special to do
+            console.log("like removed");
+        });
+    }
+
+
+    //-----get like index----------
+
+    $scope.getLikeIndex = function(post){
+        for (var i = 0; i < $scope.likes.length; i++){
+            if ($scope.likes[i].post._id == post._id)
+                return i;
+        }
+        return -1;
+    }
+
 
     //===================
     //Comment

@@ -1,4 +1,4 @@
-<p class="story_like media">
+<p ng-if='story.target.object' class="story_like media">
     <!--Date-->
     <span class="date text-muted pull-right">
         {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}

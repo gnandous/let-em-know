@@ -108,6 +108,7 @@ module.exports = function(passport){
 
     ApiRouter.get('/likes', controllers.api.like.index);
     ApiRouter.get('/like/:id', controllers.api.like.read);
+    ApiRouter.get('/user_likes/:user_id', controllers.api.like.user_likes);
     ApiRouter.get('/unlike/:user_id/:post_id', controllers.api.like.destroyLike);
     ApiRouter.get('/like/:id/remove', controllers.api.like.destroy);
 
