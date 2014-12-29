@@ -10685,6 +10685,7 @@ Copyright (c) 2014 Daniel Eden
 /*My application less file*/
 a {
   color: #6fa818;
+  cursor: pointer;
 }
 .page {
   margin-top: 50px;

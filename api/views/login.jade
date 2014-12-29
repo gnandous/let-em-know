@@ -9,7 +9,7 @@ block content
             div.panel-body
               form.form-signin(role='form', action='/login', method='POST')
                 if (messages)
-                  div.alert.alert-danger.ltk-login(role='alert')
+                  div.alert.alert-danger.ltk-login.animated.flipInX(role='alert')
                     each kw in messages
                       .message.info
                         span= kw.error
