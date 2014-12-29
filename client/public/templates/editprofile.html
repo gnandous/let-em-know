@@ -4,14 +4,16 @@
 <div class='page'>
   <div class='container'>
     <div class='row'>
-      <div class='col-md-7 col-md-offset-2'>
+      <div class='col-md-6 col-md-offset-2'>
         <div class='panel'>
           <div class='panel-body'>
             <!-- user avatar change -->
-
+            <div class="alert alert-success edit_profile_message" role="alert">
+              <strong>Your informations had been updated</strong>
+            </div>
             <div class='edit_avatar'>
-              <h1>My informations</h1>
-              <img class="user_avatar" alt="avatar" src="http://data1.whicdn.com/images/32567563/original.jpg" width="100" height="100">
+              <h1>Edit your profile</h1>
+              <img class="user_avatar" alt="avatar" src="{{user.avatar}}" width="100" height="100">
               <div class='uploadbarcontainer'>
                 <div class="uploadbar"></div>
               </div>
@@ -40,7 +42,7 @@
                 <label for="email">Email address</label>
                 <input type="email" ng-class="{ edit_input : user.email}" class="form-control edit_input" id="email"  name="email" ng-model="user.email">
               </div>
-              <button type="submit" class="btn btn-default">Submit</button>
+              <button type="submit" class="btn btn-success" ng-click='save()'>Save profile informations</button>
             </form>
           </div>
         </div>

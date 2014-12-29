@@ -44,6 +44,17 @@ ltkApp.controller("EditProfileController", function($scope, $window, $http, Requ
   // send change to server
 
   $scope.save = function(){
+    $(".edit_profile_message").css("display", "block");
+    $(".edit_profile_message").removeClass("animated flipInX");
+    $http.post('/api/user/' + $scope.user._id, $scope.user).
+      success(function(data, status, headers, config) {
+        $(".edit_profile_message").css("display", "block");
+        $(".edit_profile_message").addClass("animated flipInX");
+        console.log(data);
+      }).
+      error(function(data, status, headers, config) {
+        console.log(status);
+    });
 
   }
 

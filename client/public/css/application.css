@@ -10695,7 +10695,21 @@ Copyright (c) 2014 Daniel Eden
 body {
   background-color: #e9eaed;
 }
-
+button.btn {
+  border: none !important;
+  border-radius: 4px;
+  line-height: 1.42857143;
+  text-align: center;
+  padding: 6px 12px;
+}
+.btn-success {
+  background: #6fa818;
+  color: white;
+  border-radius: 4px;
+}
+.btn-success:hover {
+  background-color: #5c861b;
+}
 .text-align {
   text-align: center;
 }
@@ -10743,15 +10757,16 @@ body {
 }
 .edit_avatar {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .edit_avatar button {
   position: absolute;
-  top: 49px;
+  top: 59px;
   left: 115px;
 }
 .edit_avatar h1 {
-  margin-top: 0px;
+  margin-top: -13px;
+  margin-bottom: 22px;
 }
 .edit_avatar #attached_file {
   display: none;
@@ -10764,6 +10779,9 @@ body {
   width: 0%;
   background-color: #4285f4;
   height: 8px;
+}
+.edit_profile_message {
+  display: none;
 }
 .under_header{
     margin-top: 70px;
@@ -11024,6 +11042,9 @@ body {
 .panel .panel-body {
   background-color: #FFF;
   padding: 26px;
+}
+h1 {
+  color: #6fa818;
 }
 h3 {
   color: #e9eaed;
