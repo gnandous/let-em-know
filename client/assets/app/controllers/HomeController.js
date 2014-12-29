@@ -12,18 +12,9 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
     $scope.init = (function(){
         $scope.model = model;
 
+
         //init story filter
         $scope.story_filter = 'all';
-
-        //getting talents
-        Request.url("/api/talents").then(function(value){
-            $scope.talents = value;
-        });
-
-        //getting Current User posts
-        Request.url("/api/user_posts/" + $scope.model._id).then(function(value){
-            $scope.user_posts = value;
-        });
 
         //getting Followings
         Request.url("/api/user_followings/" + $scope.model._id)
@@ -35,7 +26,6 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
                         //get Unread notifications
                         var unreadNotif = Request.url("/api/notifications/unread/" + follows[i].following._id + "/" + model._id)
                             .then(function(notifs){
-                                console.log("I="+i);
                                 //save count Value
                                 follows[i].count_notifications = notifs.length;
                                 //update scope
@@ -46,11 +36,23 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
 
             });
 
-        //getting Followers
+        //getting Followers (used for count followers in profil tab)
         Request.url("/api/user_followers/" + $scope.model._id)
             .then(function(follows){
                 $scope.followers = follows;
             });
+
+        //getting talents
+        Request.url("/api/talents").then(function(value){
+            $scope.talents = value;
+        });
+
+        //getting Current User posts
+        Request.url("/api/user_posts/" + $scope.model._id).then(function(value){
+            $scope.user_posts = value;
+        });
+
+
 
         //getting Stories
         Request.url("/api/stories/").then(function(stories){
@@ -86,8 +88,63 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
 
         return false;
     }
+
     //===================
-    //Send Comment
+    //Follows
+    //===================
+
+    //-------Follow action-------
+
+    $scope.follow = function(following){
+        var data = {
+            follower: model._id,
+            following: following._id
+        }
+        //Request to add follow to DB
+        Request.post("/api/follow/", data).then(function(new_follow){
+            //return if already in list
+            var index = $scope.getFollowIndex(new_follow.following);
+            if (index > 0)
+                return;
+
+            //add new follow to list
+            data.follower = model;
+            data.following = following;
+            $scope.follows.push(data);
+        });
+    }
+
+    //-------Unfollow action------------
+
+    $scope.unfollow = function(following){
+        //return if the follows is not list
+        var index = $scope.getFollowIndex(following);
+        if (index == -1)
+            return;
+
+        //remove follows from list
+        $scope.follows.splice(index, 1);
+
+        //Request to remove follow to DB
+        Request.url("/api/unfollow/" + model._id + "/" + following._id).then(function(follow){
+            //nothing special to do
+            console.log("removed");
+        });
+    }
+
+
+    //-----get follow index----------
+
+    $scope.getFollowIndex = function(following){
+        for (var i = 0; i < $scope.follows.length; i++){
+            if ($scope.follows[i].following._id == following._id)
+                return i;
+        }
+        return -1;
+    }
+
+    //===================
+    //Comment
     //===================
     $scope.sendComment = function(post){
             var data = {

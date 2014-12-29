@@ -97,6 +97,22 @@ module.exports = {
     // ! Implements destroy::action.                                           //
     // =======================================================================//
 
+    destroyLike: function(req, res, next){
+        var userId = req.param('user_id');
+        var postId = req.param('post_id');
+
+        Like.remove({user: userId, post: postId})
+            .exec(function(err, like){
+                if (err){
+                    return res.status(400).send(err);
+                }
+                return res.status(200).send(like);
+            });
+    },
+    // =======================================================================//
+    // ! Implements destroy::action.                                           //
+    // =======================================================================//
+
     destroy: function(req, res, next){
         var likeId = req.param('id');
 

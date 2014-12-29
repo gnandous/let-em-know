@@ -108,6 +108,24 @@ module.exports = {
             res.json(follow);
         });
     },
+
+    // =======================================================================//
+    // ! Implements destroy::action.                                           //
+    // =======================================================================//
+
+    destroyFollow: function(req, res, next){
+        var followerId = req.param('follower_id');
+        var followingId = req.param('following_id');
+
+        Follow.remove({follower: followerId, following: followingId})
+            .exec(function(err, follow){
+                if (err){
+                    return res.status(400).send(err);
+                }
+                return res.status(200).send(follow);
+            });
+    },
+
     // =======================================================================//
     // ! Implements User followings::action.                                  //
     // =======================================================================//

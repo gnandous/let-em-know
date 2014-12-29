@@ -14,6 +14,7 @@
 
 var mongoose = require('mongoose');
 var Post = require("./PostModel");
+var Story = require("./StoryModel");
 var User = require("./UserModel");
 var _ = require("underscore");
 
@@ -47,7 +48,7 @@ LikeSchema.path('post').validate(function(value, respond){
 
 LikeSchema.post('save', function (doc) {
   // create the associate story
-  story = new Story({
+  var story = new Story({
     verb : "like",
     creator : doc.user,
     target : {

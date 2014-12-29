@@ -7,7 +7,8 @@
             <img class="avatar_small pull-left img-circle" src="http://fc08.deviantart.net/fs71/f/2014/153/2/e/ken_amada___persona_4_arena_ultimax_avatar_by_darkside989-d7kqn37.png" alt="avatar"/>
 
             <a class='center-block' href="#">
-            <span class="badge pull-right">{{follow.count_notifications}}</span>
+            <span ng-if="follow.count_notifications > 0" class="badge pull-right">{{follow.count_notifications}}</span>
+
             {{follow.following.pseudo | capitalize}}
             </a>
         </li>

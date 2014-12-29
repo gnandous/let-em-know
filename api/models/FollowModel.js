@@ -13,6 +13,7 @@
 // ********************************** START ******************************//
 
 var mongoose = require('mongoose');
+var Story = require('./StoryModel');
 var User = require("./UserModel");
 var _ = require("underscore");
 
@@ -46,8 +47,8 @@ FollowSchema.path('following').validate(function(value, respond){
 
 FollowSchema.post('save', function (doc) {
   // create the associate story
-  story = new Story({
-    verb : "follows",
+  var story = new Story({
+    verb : "follow",
     creator : doc.follower,
     target : {
       object : doc._id,
