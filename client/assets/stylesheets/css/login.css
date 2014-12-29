@@ -1,8 +1,17 @@
 /**
  ** @description - Implements Stylesheet for login page
 */
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+.login_page {
+  margin-top: 60px;
+}
+.login_page .panel.login {
+  border: 1px solid #D8D8D8;
+}
+.login_page .forgot-password {
+  color: #6FA818;
+  float: right;
+}
+.login_page .login_button {
+  border-bottom: 1px solid #e9eaed;
+  padding-bottom: 20px;
 }

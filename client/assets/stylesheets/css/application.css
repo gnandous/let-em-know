@@ -1,4 +1,7 @@
 /*My application less file*/
+a {
+  color: #6fa818;
+}
 .page {
   margin-top: 50px;
 }

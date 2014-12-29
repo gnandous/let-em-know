@@ -38,7 +38,7 @@ module.exports = {
     if (!req.body.password) {
       errors.push({
         field: 'password',
-        error: 'password must be a valid email',
+        error: 'password must be filled',
         value: req.body.password
       });
     }
