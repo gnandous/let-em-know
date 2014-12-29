@@ -1,0 +1,52 @@
+<!-- include navbar -->
+<div header></div>
+<!-- Main content -->
+<div class='page'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-6 col-md-offset-2'>
+        <div class='panel'>
+          <div class='panel-body'>
+            <!-- user avatar change -->
+            <div class="alert alert-success edit_profile_message" role="alert">
+              <strong>Your informations had been updated</strong>
+            </div>
+            <div class='edit_avatar'>
+              <h1>Edit your profile</h1>
+              <img class="user_avatar" alt="avatar" src="{{user.avatar}}" width="100" height="100">
+              <div class='uploadbarcontainer'>
+                <div class="uploadbar"></div>
+              </div>
+              <button type="button" class="btn btn-default" ng-click="uploadImage()">Modifier</button>
+              <form id="uploadStart" action="/api/medias">
+                <input type="file" id='attached_file' onchange="angular.element(this).scope().loadFileFromDesktop(this)" >
+              </form>
+            </div>
+
+            <!-- form for edit -->
+            <form class='edit_profile_action'>
+              <input type="hidden" ng-model="user.avatar">
+              <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input type="text" ng-class="{ edit_input : user.firstname}" class="form-control" id="firstname"  name="firstname" ng-model="user.firstname">
+              </div>
+              <div class="form-group">
+                <label for="lastname">lastname</label>
+                <input type="text" ng-class="{ edit_input : user.lastname}" class="form-control" id="lastname"  name="lastname" ng-model="user.lastname">
+              </div>
+              <div class="form-group">
+                <label for="pseudo">Pseudo</label>
+                <input type="text" ng-class="{ edit_input : user.pseudo}" class="form-control edit_input" id="pseudo"  name="pseudo" ng-model="user.pseudo">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" ng-class="{ edit_input : user.email}" class="form-control edit_input" id="email"  name="email" ng-model="user.email">
+              </div>
+              <button type="submit" class="btn btn-success" ng-click='save()'>Save profile informations</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

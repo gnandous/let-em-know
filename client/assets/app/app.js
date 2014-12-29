@@ -22,6 +22,13 @@ ltkApp.config(function($routeProvider, $locationProvider){
         talents: function(Request){ return Request.url("/api/talents");}
       }
     }).
+    when("/profile/edit", {
+      templateUrl: '/templates/editprofile.html',
+      controller: 'EditProfileController',
+      resolve: {
+        current_user: function(Request){ return Request.url("/api/current_user");}
+      }
+    }).
     otherwise({ redirectTo: '/login' });
     $locationProvider.html5Mode(true);
 

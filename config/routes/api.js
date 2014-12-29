@@ -141,5 +141,11 @@ module.exports = function(passport){
     ApiRouter.get('/notifications/unread/:from/:to', controllers.api.notification.unreadNotifications);
     ApiRouter.get('/notification/:id/remove', controllers.api.notification.destroy);
 
+    // =======================================================================//
+    // ! Medias
+    // =======================================================================//
+
+    ApiRouter.post('/medias', controllers.api.medias.handleSent);
+
     return (ApiRouter);
 }

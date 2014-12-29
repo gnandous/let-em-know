@@ -1,0 +1,28 @@
+.edit_avatar {
+  position: relative;
+  margin-bottom: 10px;
+}
+.edit_avatar button {
+  position: absolute;
+  top: 59px;
+  left: 115px;
+}
+.edit_avatar h1 {
+  margin-top: -13px;
+  margin-bottom: 22px;
+}
+.edit_avatar #attached_file {
+  display: none;
+}
+.edit_avatar .uploadbarcontainer {
+  width: 100px;
+  margin-top: 10px;
+}
+.edit_avatar .uploadbar {
+  width: 0%;
+  background-color: #4285f4;
+  height: 8px;
+}
+.edit_profile_message {
+  display: none;
+}
