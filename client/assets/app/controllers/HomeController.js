@@ -111,6 +111,19 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
             data.follower = model;
             data.following = following;
             $scope.follows.push(data);
+
+            //add new story to scope
+            new_follow.follower = model;
+            new_follow.following = following;
+            var follow_story = {
+                verb : "follow",
+                creator: model,
+                target: {
+                    object: new_follow,
+                    type: "FOLLOW"
+                }
+            };
+            $scope.stories.unshift(follow_story); //add as first elem of array
         });
     }
 

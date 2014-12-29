@@ -17,17 +17,17 @@ var User = require("./UserModel");
 var _ = require("underscore");
 
 var StorySchema = new mongoose.Schema ({
-    verb : {type : String, required : true, enum: ["post", "follow","comment"]},
+    verb : {type : String, required : true, enum: ["post","follow","comment", "like"]},
     creator : {type : mongoose.Schema.ObjectId, ref: 'User', required : true},
     target : {
-      object: {
-        type :  mongoose.Schema.ObjectId,
-        required: true
-      },
-      type : {
-        type : String,
-        required : true
-      }
+        object: {
+            type :  mongoose.Schema.ObjectId,
+            required: true
+        },
+        type : {
+            type : String,
+            required : true
+        }
     },
     published_date : {type : Date, default : Date.now}
 
@@ -46,50 +46,80 @@ StorySchema.path('creator').validate(function(value, respond){
 // Mongoose statics
 
 StorySchema.statics.populateStoriesTarget = function(stories, callback){
-  var acc = [];
-  var uids = stories.slice();
-  (function next(){
-    if (!uids.length) return callback(null, acc);
-    var uid = uids.pop();
+    var acc = [];
+    var uids = stories.slice();
+    (function next(){
+        if (!uids.length) return callback(null, acc);
+        var uid = uids.pop();
 
-    // handle post type
+        // handle post type
 
-    if (uid.target.type === "POST"){
-      uid.populate({path : 'target.object', model : 'Post'}, function(err, story){
-            if (err) return callback(err);
+        if (uid.target.type === "POST"){
+            uid.populate({path : 'target.object', model : 'Post'}, function(err, story){
+                if (err) return callback(err);
 
-          story.populate({path : 'target.object.comments', model : 'Comment'}, function(err, story){
-              if (err) return callback(err);
+                story.populate({path : 'target.object.comments', model : 'Comment'}, function(err, story){
+                    if (err) return callback(err);
 
-              story.populate({path : 'target.object.comments.creator', model : 'User'}, function(err, story){
-                  if (err) return callback(err);
+                    story.populate({path : 'target.object.comments.creator', model : 'User'}, function(err, story){
+                        if (err) return callback(err);
 
-                  acc.push(story);
-                  next();
-              });
-          });
-      });
-    }
+                        acc.push(story);
+                        next();
+                    });
+                });
+            });
+        }
 
-    // handle Comment type
-    else if (uid.target.type === "COMMENT"){
-      uid.populate({path : 'target.object', model : 'Comment'}, function(err, storie){
-          if (err) return callback(err);
-          acc.push(storie);
-          next();
-      })
-    }
+        // handle like type
 
-    // handle follow type
+        else if (uid.target.type === "LIKE"){
+            uid.populate({path : 'target.object', model : 'Like'}, function(err, story){
+                if (err) return callback(err);
 
-    else if (uid.target.type === "FOLLOW"){
-      uid.populate({path : 'target.object', model : 'Follow'}, function(err, storie){
-          if (err) return callback(err);
-          acc.push(storie);
-          next();
-      })
-    }
-  })();
+                story.populate({path : 'target.object.post', model : 'Post'}, function(err, story){
+                    if (err) return callback(err);
+
+                    acc.push(story);
+                    next();
+                });
+            });
+        }
+
+        // handle Comment type
+
+        else if (uid.target.type === "COMMENT"){
+            uid.populate({path : 'target.object', model : 'Comment'}, function(err, story){
+                if (err) return callback(err);
+
+                story.populate({path : 'target.object.post', model : 'Post'}, function(err, story){
+                    if (err) return callback(err);
+
+                    acc.push(story);
+                    next();
+                });
+            })
+        }
+
+        // handle follow type
+
+        else if (uid.target.type === "FOLLOW"){
+            uid.populate({path : 'target.object', model : 'Follow'}, function(err, story){
+                if (err) return callback(err);
+
+                story.populate({path : 'target.object.follower', model : 'User'}, function(err, story){
+                    if (err) return callback(err);
+
+                    story.populate({path : 'target.object.following', model : 'User'}, function(err, story){
+                        if (err) return callback(err);
+
+                        acc.push(story);
+                        next();
+                    });
+                });
+            })
+        }
+    })();
 }
 module.exports = mongoose.model('Story', StorySchema);
 

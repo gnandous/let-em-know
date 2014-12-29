@@ -63,7 +63,8 @@
 
                 <!--Like-->
                 <p class="text-muted">
-                    <button class="btn btn-default">Like</button>
+                    <button ng-if="(getLikeIndex(story.target.object._id) > 0)" ng-click="like(story.target.object)" class="btn btn-success">Like</button>
+                    <button ng-if="!(getLikeIndex(story.target.object._id) > 0)" ng-click="like(story.target.object)" class="btn btn-default">Unlike</button>
                     <span>XXX likes</span>
                 </p>
             </div>

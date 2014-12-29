@@ -35,6 +35,23 @@ module.exports = {
     },
 
     // =======================================================================//
+    // ! Implements user_likes::action.                                            //
+    // =======================================================================//
+
+    user_likes: function(req, res, next){
+        var userId = req.param('user_id');
+
+        Like.find({user: userId})
+            .populate('post')
+            .exec(function(err, like){
+                if (err){
+                    return res.status(400).send(err);
+                }
+                return res.status(200).send(like);
+            });
+    },
+
+    // =======================================================================//
     // ! Implements create::action.                                           //
     // =======================================================================//
 
