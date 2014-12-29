@@ -11,8 +11,8 @@
             <img class="avatar_medium img-circle" ng-src="http://data1.whicdn.com/images/32567563/original.jpg" alt="avatar">
             {{story.creator.pseudo | capitalize}}
         </a>
-        Commented your post
-        <a>{{story.target.post.title}}</a>
+        Commented the post
+        <a>{{story.target.object.post.title}}</a>
     </header>
     <blockquote class="message">{{story.target.object.message}}</blockquote>
 </div>

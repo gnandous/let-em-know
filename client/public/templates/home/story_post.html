@@ -53,15 +53,19 @@
             <div id="post_media_{{$index}}" class="post_media">
                 <img ng-src="{{story.target.object.content}}" alt="post media"/>
             </div>
-
-            <!--Infos-->
+            <p>{{post_id}}</p>
+            <!--Action-->
             <div class="post_info">
-                <button class="btn btn-primary pull-right">Follow {{story.creator.pseudo | capitalize}}</button>
+                <!--Follow-->
+                <button ng-if="!(getFollowIndex(story.creator) > 0)" ng-click="follow(story.creator)" class="btn btn-primary pull-right">Follow {{story.creator.pseudo | capitalize}}</button>
+                <button ng-if="(getFollowIndex(story.creator) > 0)" ng-click="unfollow(story.creator)" class="btn btn-default pull-right">Unfollow {{story.creator.pseudo | capitalize}}</button>
                 <h3><a href="#">{{story.target.object.title}}</a></h3>
 
+                <!--Like-->
                 <p class="text-muted">
-                    <button class="btn btn-default">Like</button>
-                    <span>XXX likes</span>
+                    <button ng-if="!(getLikeIndex(story.target.object) > 0)" ng-click="like(story.target.object)" class="btn btn-success">Like</button>
+                    <button ng-if="(getLikeIndex(story.target.object) > 0)" ng-click="unlike(story.target.object)" class="btn btn-default">Unlike</button>
+                    <!--<span>XXX likes</span>-->
                 </p>
             </div>
         </section>
