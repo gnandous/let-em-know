@@ -20,3 +20,9 @@ ltkApp.directive('storycomment', function(){
         templateUrl: "/templates/home/story_comment.html"
     }
 });
+ltkApp.directive('storylike', function(){
+    return {
+        restrict: 'A',
+        templateUrl: "/templates/home/story_like.html"
+    }
+});

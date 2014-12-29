@@ -1,4 +1,4 @@
-<p ng-if='story.target.object' class="story_follow media">
+<p ng-if='story.target.object' class="story_like media">
     <!--Date-->
     <span class="date text-muted pull-right">
         {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}
@@ -11,6 +11,6 @@
     </a>
 
     <!--Story Message-->
-    is now following
-    <a>{{story.target.object.following.pseudo | capitalize}}</a>.
+    likes the post
+    <a>{{story.target.object.post.title}}</a>.
 </p>

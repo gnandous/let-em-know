@@ -10867,7 +10867,7 @@ button.btn {
 /*=============================================
 * Story
 *==============================================*/
-.story_follow, .story_comment, .story_post{
+.story_follow, .story_comment, .story_post, .story_like{
     background: white;
     margin-bottom: 10px;
     padding:10px
@@ -10980,6 +10980,10 @@ button.btn {
 .menu_following img{
     position:relative;
     bottom: 6px;
+}
+.menu_following .list-group{
+    max-height: 118px;
+    overflow-y: scroll;
 }
 .padding {
   padding: 10px 10px;
