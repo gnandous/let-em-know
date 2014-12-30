@@ -13,6 +13,7 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
         $scope.model = model;
 
 
+
         //init story filter
         $scope.story_filter = 'all';
 

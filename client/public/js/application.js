@@ -36713,6 +36713,7 @@ ltkApp.factory('authInterceptor', function ($cookies, $rootScope, $q, $window) {
     //Intercept the case before response is throw back to angular api
     response: function (response) {
       if (response.status === 401) {
+        window.location.href = "/login";
         // handle the case where the user is not authenticated
       }
       return response || $q.when(response);
@@ -36861,6 +36862,7 @@ ltkApp.controller("HomeController", function($scope, $window, $http, Request, mo
 
     $scope.init = (function(){
         $scope.model = model;
+
 
 
         //init story filter

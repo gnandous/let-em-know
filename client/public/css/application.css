@@ -10952,7 +10952,13 @@ button.btn {
  ** @description - Implements Stylesheet for login page
 */
 .login_page {
-  margin-top: 60px;
+  height: 100vh;
+  background: url(/images/cover-background.jpg) no-repeat top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 160px;
 }
 .login_page .panel.login {
   border: 1px solid #D8D8D8;
