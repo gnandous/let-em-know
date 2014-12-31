@@ -13,6 +13,8 @@ var controllers = require('../../api/controllers');
 
 websiteRouter.get('/', controllers.website.welcome.index);
 websiteRouter.get('/login', controllers.website.welcome.login);
+websiteRouter.get('/signup', controllers.website.welcome.signup);
+
 
 websiteRouter.get('/home', controllers.api.welcome.home);
 websiteRouter.get('/*', controllers.api.welcome.home);

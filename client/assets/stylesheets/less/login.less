@@ -1,9 +1,12 @@
 /**
- ** @description - Implements Stylesheet for login page
+ ** @description - Implements Stylesheet for login/signin page
 */
 
-.login_page{
+.height{
   height: 100vh;
+}
+.login_page{
+  .height;
   background: url(/images/cover-background.jpg)no-repeat top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -21,4 +24,13 @@
     border-bottom: 1px solid #e9eaed;
     padding-bottom: 20px;
   }
+}
+.signup_page{
+  .height;
+  background: url(/images/signup.jpg)no-repeat top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 100px;
 }

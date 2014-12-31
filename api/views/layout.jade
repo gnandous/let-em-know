@@ -7,6 +7,19 @@ html
     header.header
       nav.navbar.navbar-default.navbar-fixed-top
         .container
+          .navbar-header
+          #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-left
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="#")
+                  i.fa.fa-user
+                  |  Login
+              li
+                a(href="#")
+                  i.fa.fa-plus
+                  |  SignUp
+
 
     block content
     script(type='text/javascript', src='js/website.js')

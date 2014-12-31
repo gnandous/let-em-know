@@ -10949,8 +10949,11 @@ button.btn {
   margin-top: 50px;
 }
 /**
- ** @description - Implements Stylesheet for login page
+ ** @description - Implements Stylesheet for login/signin page
 */
+.height {
+  height: 100vh;
+}
 .login_page {
   height: 100vh;
   background: url(/images/cover-background.jpg) no-repeat top fixed;
@@ -10970,6 +10973,15 @@ button.btn {
 .login_page .login_button {
   border-bottom: 1px solid #e9eaed;
   padding-bottom: 20px;
+}
+.signup_page {
+  height: 100vh;
+  background: url(/images/signup.jpg) no-repeat top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 100px;
 }
 .menu{
     margin-left: 10px;
@@ -11003,6 +11015,13 @@ button.btn {
 .menu_following .list-group{
     max-height: 118px;
     overflow-y: scroll;
+}
+.navbar-nav > li > a {
+  padding-top: 13px;
+  padding-bottom: 0px;
+}
+.navbar-nav > li > a .fa {
+  padding-right: 3px;
 }
 .padding {
   padding: 10px 10px;

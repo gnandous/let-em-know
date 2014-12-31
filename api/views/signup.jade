@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .signup_page
+    .container
+      div.row
+        div.col-md-5.col-md-offset-3
+          div
+            div.panel
+              div.panel-body
+                form.form-signin(role='form', action='/signup', method='POST')
+                  div.form-group
+                    label(for="email") Email*
+                    input#email.form-control(type='email', placeholder='email', name='Email')
+                  div.form-group
+                    label(for='inputPassword') Password*
+                    input#password.form-control(type='password', placeholder='Password', name='Password')
+                  div.form-group
+                    label(for='inputPassword') Confirm password*
+                    input#confirmPassword.form-control(type='password', placeholder='confirmpassword', name='Confirm password')
+                  div.form-group
+                    label(for="firstname") Firstname*
+                    input#firstname.form-control(type='text', placeholder='firstname', name='Firstname')
+                  div.form-group
+                    label(for="lastname") Lastname*
+                    input#lastname.form-control(type='text', placeholder='lastname', name='Lastname')
+                  div.form-group.login_button
+                    button.btn.btn-lg.btn-success.btn-block(type='submit') Sign Up
+                  div.form-group
+                    a Don't have a let them know account yet?
