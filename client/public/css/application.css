@@ -10952,10 +10952,10 @@ button.btn {
  ** @description - Implements Stylesheet for login/signin page
 */
 .height {
-  height: 100vh;
+  min-height: 100vh;
 }
 .login_page {
-  height: 100vh;
+  min-height: 100vh;
   background: url(/images/cover-background.jpg) no-repeat top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -10975,13 +10975,19 @@ button.btn {
   padding-bottom: 20px;
 }
 .signup_page {
-  height: 100vh;
+  min-height: 100vh;
   background: url(/images/signup.jpg) no-repeat top fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   padding-top: 100px;
+}
+.signup_page .alert-danger {
+  background-color: transparent;
+}
+.signup_page .alert-danger span {
+  font-weight: bold;
 }
 .menu{
     margin-left: 10px;

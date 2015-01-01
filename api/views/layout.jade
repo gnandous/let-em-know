@@ -19,7 +19,9 @@ html
                 a(href="#")
                   i.fa.fa-plus
                   |  SignUp
-
-
     block content
+    if errors
+      script(type='text/javascript').
+        var errors =!{JSON.stringify(errors)};
+    script(type='text/javascript', src='js/libs/jquery/jquery.js')
     script(type='text/javascript', src='js/website.js')

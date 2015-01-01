@@ -23,6 +23,7 @@ websiteRouter.get('/*', controllers.api.welcome.home);
  ** @user authentification logic
 */
 websiteRouter.post('/login', controllers.website.welcome.loginFromWebsite);
+websiteRouter.post('/signup', controllers.website.welcome.signupFromWebsite);
 
 
 module.exports = websiteRouter;
