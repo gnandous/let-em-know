@@ -10,7 +10,7 @@
 
         <!--Avatar-->
         <a class="avatar_link">
-            <img class="avatar_medium img-circle" ng-src="http://fast1.onesite.com/capcom-unity.com/user/jgonzo/79a161be5513fc9158e67efa673d08b8.png?v=57600" alt="avatar">
+            <img class="avatar_medium img-circle" ng-src="{{story.creator.avatar}}" alt="avatar">
             {{story.creator.pseudo | capitalize}}
         </a>
 
@@ -33,7 +33,7 @@
                 <li ng-repeat="comment in story.target.object.comments" class="list-group-item">
                     <!--Avatar-->
                     <a href="#" class="avatar_link pull-left">
-                        <img class="avatar_medium img-circle" ng-src="http://fast1.onesite.com/capcom-unity.com/user/jgonzo/79a161be5513fc9158e67efa673d08b8.png?v=57600" alt="avatar">
+                        <img class="avatar_medium img-circle" ng-src="{{comment.creator.avatar}}" alt="avatar">
                     </a>
                     <p class="media-heading">
                         <a href="#">{{comment.creator.pseudo | capitalize}}</a>

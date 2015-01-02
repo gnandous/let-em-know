@@ -19,7 +19,10 @@ var User = new Schema({
 
   firstname: String,
   lastname: String,
-  avatar: String,
+  avatar: {
+      type: String,
+      default: "/uploads/default_profile_image.gif"
+  },
   pseudo: {
     type: String,
     required: true

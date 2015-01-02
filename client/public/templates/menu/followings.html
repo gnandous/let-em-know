@@ -4,7 +4,7 @@
     </div>
     <ul class="list-group">
         <li ng-repeat="follow in follows" class="list-group-item">
-            <img class="avatar_small pull-left img-circle" src="http://fc08.deviantart.net/fs71/f/2014/153/2/e/ken_amada___persona_4_arena_ultimax_avatar_by_darkside989-d7kqn37.png" alt="avatar"/>
+            <img class="avatar_small pull-left img-circle" src="{{follow.following.avatar}}" alt="avatar"/>
 
             <a class='center-block' href="#">
             <span ng-if="follow.count_notifications > 0" class="badge pull-right">{{follow.count_notifications}}</span>
