@@ -1,5 +1,5 @@
 node_modules
-
+client/public/uploads
 .idea
 client/public/js/application.js
 client/public/css/application.css
