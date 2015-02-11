@@ -51,7 +51,12 @@
         <section class="post_content">
             <!--Media-->
             <div id="post_media_{{$index}}" class="post_media">
-                <img ng-src="{{story.target.object.content}}" alt="post media"/>
+                <img ng-if="story.target.object.post_type == 'image'" ng-src="{{story.target.object.content}}" alt="post media"/>
+                <video ng-if="story.target.object.post_type == 'video'" width="600" height="400" controls>
+                    <source src="{{story.target.object.content}}" type="video/mp4">
+                    <source src="{{story.target.object.content}}" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             <p>{{post_id}}</p>
             <!--Action-->
