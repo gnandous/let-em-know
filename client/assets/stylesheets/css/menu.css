@@ -1,0 +1,33 @@
+.menu{
+    margin-left: 10px;
+    width: 200px;
+    position: fixed;
+    top:56px;
+}
+.menu .panel{
+    border:none
+}
+/*=============================================
+* MENU PROFIL
+*==============================================*/
+.menu_profil.panel{
+    margin-top:0;
+    padding-bottom: 10px;
+}
+.menu_profil img{
+    margin-left: 10px;
+}
+/*=============================================
+* MENU FOLLOWINGS
+*==============================================*/
+.menu_following .badge{
+    background-color: red;
+}
+.menu_following img{
+    position:relative;
+    bottom: 6px;
+}
+.menu_following .list-group{
+    max-height: 118px;
+    overflow-y: scroll;
+}

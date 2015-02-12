@@ -1,0 +1,102 @@
+/*=============================================
+* Story Filter (Nav)
+*==============================================*/
+.story_filter{
+    margin-right: 20px;
+    position: fixed;
+    top:56px;
+    width: calc(100vw - 200px - 40px); /*100% screenWidth - MenuWidth - marginRight*/
+}
+.story_filter .navbar{
+    min-height: 0;
+    margin: 0;
+    height: 40px;
+}
+.story_filter, .story_filter *{
+    z-index: 99;
+}
+
+/*=============================================
+* Layout
+*==============================================*/
+.home_main_content{
+    margin-top: calc(50px + 40px + 20px); /*Main header height + storyFilter height + margin-top*/
+    width: calc(100vw - 200px - 40px); /*100% screenWidth - MenuWidth - marginRight*/
+}
+/*=============================================
+* Story
+*==============================================*/
+.story_follow, .story_comment, .story_post, .story_like{
+    background: white;
+    margin-bottom: 10px;
+    padding:10px
+}
+
+/*=============================================
+* Story Follow
+*==============================================*/
+.story_follow{
+}
+
+/*=============================================
+* Story Comment
+*==============================================*/
+.story_comment .message{
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+/*=============================================
+* Story Post
+*==============================================*/
+
+/*Global*/
+.story_post {
+    padding: 0;
+    border:none;
+    position:relative
+}
+.story_post.panel .panel-heading{
+    border-bottom: lightslategrey 1px;
+}
+
+/*Heading*/
+.story_post.panel .panel-heading, .story_post.panel .panel-body{
+    margin:0;
+    padding: 10px;
+}
+
+/*Body*/
+.story_post .body{
+    position: relative;
+}
+.story_post .body .post_content{
+    width: 70%;
+    overflow: hidden;
+}
+.story_post .post_media *{
+    width: 100%;
+}
+.story_post .body p{
+    margin-bottom: 0;
+}
+.story_post .post_comments{
+    width: calc(30% - 10px); /*(100% - content Width) - margin */
+    position: relative;
+    bottom: 40px;
+
+}
+.story_post .post_comments ul{
+    max-height: 300px;
+    min-height: 200px;
+    overflow-y: scroll;
+
+}
+/*Footer*/
+.story_post .input_comment{
+    width: 75%;
+}
+.story_post .send{
+    width: calc(25% - 10px);
+    float:right;
+}

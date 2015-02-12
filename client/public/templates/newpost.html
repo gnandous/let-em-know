@@ -1,0 +1,50 @@
+<!-- include navbar -->
+<div header></div>
+<div id="page" class='newpost'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-7 col-md-offset-2'>
+        <div class='panel'>
+          <div class='panel-heading'>
+            <div ng-show="resErr" class="ng-hide">
+              <div class="alert alert-danger" role="alert">
+                <p ng-repeat="resmessage in resmessages track by $index">
+                {{resmessage}}
+                </p>
+              </div>
+            </div>
+            <h2>SHARE YOUR POST</h2>
+            <div class='progress-bar'></div>
+            <textarea type='text' placeholder='Share something' name='title' id='title' ng-model='post.title'></textarea>
+          </div>
+          <div class='panel-body'>
+            <div class='PstC'>
+              <!-- dropzone body for media -->
+              <div id="dropzonecontainer" class='dropzonecontainer dropzone'>
+                <div id='dpz-action'>
+                  <i class="fa fa-times"></i>
+                </div>
+                <div class='infos'>
+                  <h3>Faire glisser une image ici.</h3>
+                  <p>vous pouvez également ...</p>
+                  <button type="button" class="btn  dpz-select">Selectionner l'image à importer</button>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary sendPost" ng-click='send()'>Send</button>
+          </div>
+        </div>
+      </div>
+      <!-- tag block -->
+      <div class='col-md-3'>
+        <div class='postaddtalent'>
+          <div class='panel' ng-class= "{ addedTags : post.tags.indexOf(talent._id) != -1 }"ng-repeat='talent in talents' ng-click="setTalents($index)">
+            <div class='panel-heading'>
+              <h4>{{talent.name | uppercase}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

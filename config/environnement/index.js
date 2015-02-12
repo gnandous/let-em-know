@@ -1,5 +1,6 @@
 module.exports = {
   db: require('./db'),
   server: require('./server'),
-  mailer: require('./mailer')
+  mailer: require('./mailer'),
+  session: require('./session')
 }

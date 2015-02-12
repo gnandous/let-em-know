@@ -1,0 +1,18 @@
+<div class="story_comment media">
+    <!--Heading-->
+    <header class="media-heading">
+        <!--Date-->
+    <span class="date text-muted pull-right">
+        {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}
+    </span>
+
+        <!--Avatar-->
+        <a class="avatar_link">
+            <img class="avatar_medium img-circle" ng-src="{{story.creator.avatar}}" alt="avatar">
+            {{story.creator.pseudo | capitalize}}
+        </a>
+        Commented the post
+        <a>{{story.target.object.post.title}}</a>
+    </header>
+    <blockquote class="message">{{story.target.object.message}}</blockquote>
+</div>

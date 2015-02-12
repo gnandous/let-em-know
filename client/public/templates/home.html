@@ -1,0 +1,34 @@
+<!-- include navbar -->
+<div header></div>
+
+<!-- Menu -->
+<nav class="menu pull-left">
+    <section menuprofil></section>
+    <section menufollowings></section>
+    <section menutalents></section>
+</nav>
+<!--Filter-->
+<nav class="story_filter after_left_menu ">
+   <ul class="navbar navbar-default nav nav-pills">
+       <li ng-click='setStoryFilter("all")' class="presentation {{story_filter == 'all' ? 'active' : ''}}"><a href="#">All</a></li>
+       <li ng-click='setStoryFilter("image")' class="presentation {{story_filter == 'image' ? 'active' : ''}}"><a href="#">Images</a></li>
+       <li ng-click='setStoryFilter("audio")' class="presentation {{story_filter == 'audio' ? 'active' : ''}}"><a href="#">Musics</a></li>
+       <li ng-click='setStoryFilter("video")' class="presentation {{story_filter == 'video' ? 'active' : ''}}"><a href="#">Videos</a></li>
+       <li ng-click='setStoryFilter("follow")' class="presentation {{story_filter == 'follow' ? 'active' : ''}}"><a href="#">Follows</a></li>
+       <li ng-click='setStoryFilter("comment")' class="presentation {{story_filter == 'comment' ? 'active' : ''}}"><a href="#">Comments</a></li>
+       <li ng-click='setStoryFilter("like")' class="presentation {{story_filter == 'like' ? 'active' : ''}}"><a href="#">Likes</a></li>
+    </ul>
+</nav>
+
+<!-- Main Content -->
+<section class="home_main_content after_left_menu">
+    <article ng-repeat="story in stories" ng-if='filter_allows(story)' class="story">
+        <div storypost ng-if="story.verb == 'post'"></div>
+        <div storyfollow ng-if="story.verb == 'follow'"></div>
+        <div storycomment ng-if="story.verb == 'comment'"></div>
+        <div storylike ng-if="story.verb == 'like'"></div>
+    </article>
+</section>
+
+<!-- Footer -->
+<footer footer></footer>

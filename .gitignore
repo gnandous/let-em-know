@@ -1,3 +1,7 @@
 node_modules
-.idea
 client/public/uploads
+.idea
+client/public/js/application.js
+client/public/css/application.css
+vendor/assets/stylesheets/plugins.css
+vendor/assets/javascripts/plugins.js

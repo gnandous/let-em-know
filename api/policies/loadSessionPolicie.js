@@ -2,15 +2,19 @@
 
 // ***********************************************************************//
 //
-// ** SecureUrlPolicie - URL secure..
-// ** @return   return 401 or next .
+// ** loadSessionPolicie.js - load user from cookies token ..
+// ** @return   next() if user or redirect to /login.
 //
 // ***********************************************************************//
 
 // ********************************** START ******************************//
 
+var passport = require('passport');
 module.exports = function(req, res, next){
-  if(req.session.passport.user === undefined){ res.redirect('/login');}
-  else
-    next();
+  /** Check if cookie exist and try to load
+   ** User from token or redirect to /login
+  */
+
+  next();
+
 }

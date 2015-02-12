@@ -1,11 +1,42 @@
 /**
- ** @description - Implements Stylesheet for login page
+ ** @description - Implements Stylesheet for login/signin page
 */
 
-@login-width: 330px;
-
-.form-signin{
-  max-width: @login-width;
-  padding: 15px;
-  margin: 0 auto;
+.height{
+  min-height: 100vh;
+}
+.login_page{
+  .height;
+  background: url(/images/cover-background.jpg)no-repeat top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 160px;
+  .panel.login{
+    border: 1px solid #D8D8D8;
+  }
+  .forgot-password{
+    color: #6FA818;
+    float: right;
+  }
+  .login_button{
+    border-bottom: 1px solid #e9eaed;
+    padding-bottom: 20px;
+  }
+}
+.signup_page{
+  .height;
+  background: url(/images/signup.jpg)no-repeat top fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 100px;
+  .alert-danger{
+    background-color: transparent;
+    span{
+      font-weight: bold;
+    }
+  }
 }

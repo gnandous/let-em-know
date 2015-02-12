@@ -1,0 +1,16 @@
+<p ng-if='story.target.object' class="story_follow media">
+    <!--Date-->
+    <span class="date text-muted pull-right">
+        {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}
+    </span>
+
+    <!--Avatar-->
+    <a class="avatar_link">
+        <img class="avatar_medium img-circle" ng-src="{{story.creator.avatar}}" alt="avatar">
+        {{story.creator.pseudo | capitalize}}
+    </a>
+
+    <!--Story Message-->
+    is now following
+    <a>{{story.target.object.following.pseudo | capitalize}}</a>.
+</p>

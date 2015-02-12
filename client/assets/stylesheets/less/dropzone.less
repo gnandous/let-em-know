@@ -1,0 +1,43 @@
+.text-align{
+  text-align: center;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.dropzonecontainer{
+  .pointer;
+  width: 100%;
+  height: 100%;
+  border: #ddd 4px dashed;
+  border-radius: 2px;
+  padding-top: 20px;
+  .text-align;
+  .infos{
+    pointer-events: none;
+  }
+  .dz-default, .dz-success-mark, .dz-error-mark, .dz-error-message, .dz-size, .dz-filename{
+    display: none;
+  }
+  .dpz-select{
+    height: 30px;
+    background-color: #4285f4;
+    font-size: 14px;
+    color: white;
+    padding: 4px 24px;
+  }
+  #dpz-action{
+    position: absolute;
+    top: 128px;
+    left: 50%;
+    margin-left: -18px;
+    opacity: 0;
+    //z-index: -22;
+    width: 50px;
+    height: 50px;
+    .fa-times{
+      font-size: 45px;
+    }
+  }
+}

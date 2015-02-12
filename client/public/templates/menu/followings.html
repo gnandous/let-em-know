@@ -1,0 +1,19 @@
+<div class="menu_following panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Followings</h3>
+    </div>
+    <ul class="list-group">
+        <li ng-repeat="follow in follows" class="list-group-item">
+            <img class="avatar_small pull-left img-circle" src="{{follow.following.avatar}}" alt="avatar"/>
+
+            <a class='center-block' href="#">
+            <span ng-if="follow.count_notifications > 0" class="badge pull-right">{{follow.count_notifications}}</span>
+
+            {{follow.following.pseudo | capitalize}}
+            </a>
+        </li>
+    </ul>
+   <!-- <div class="panel-footer">
+       More
+    </div>-->
+</div>

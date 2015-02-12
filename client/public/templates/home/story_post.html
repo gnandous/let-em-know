@@ -1,0 +1,92 @@
+<div class='panel story_post'>
+    <!--========================================
+    HEADER
+    ============================================-->
+    <header class="panel-heading">
+        <!--Date-->
+        <span class="date text-muted pull-right">
+            {{story.published_date | date: "EEE dd MMM, 'at' hh'h'mm"}}
+        </span>
+
+        <!--Avatar-->
+        <a class="avatar_link">
+            <img class="avatar_medium img-circle" ng-src="{{story.creator.avatar}}" alt="avatar">
+            {{story.creator.pseudo | capitalize}}
+        </a>
+
+        <!--Story Message-->
+        added a new post <a href="#">{{story.target.object.title}}</a>.
+    </header>
+
+    <!--========================================
+    BODY
+    ============================================-->
+    <div class="panel-body body">
+
+        <!--========================================
+        POST COMMENTS
+        ============================================-->
+        <section class="post_comments pull-right">
+            <h4 class="text-right text-muted">Comments</h4>
+            <ul class="list-group">
+
+                <li ng-repeat="comment in story.target.object.comments" class="list-group-item">
+                    <!--Avatar-->
+                    <a href="#" class="avatar_link pull-left">
+                        <img class="avatar_medium img-circle" ng-src="{{comment.creator.avatar}}" alt="avatar">
+                    </a>
+                    <p class="media-heading">
+                        <a href="#">{{comment.creator.pseudo | capitalize}}</a>
+                    </p>
+                    <p class="message media-body">
+                      {{comment.message}}
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <!--========================================
+        POST CONTENT
+        ============================================-->
+        <section class="post_content">
+            <!--Media-->
+            <div id="post_media_{{$index}}" class="post_media">
+                <img ng-if="story.target.object.post_type == 'image'" ng-src="{{story.target.object.content}}" alt="post media"/>
+                <video ng-if="story.target.object.post_type == 'video'" width="600" height="400" controls>
+                    <source src="{{story.target.object.content}}" type="video/mp4">
+                    <source src="{{story.target.object.content}}" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>{{post_id}}</p>
+            <!--Action-->
+            <div class="post_info">
+                <!--Follow-->
+                <button ng-if="!(getFollowIndex(story.creator) > 0)" ng-click="follow(story.creator)" class="btn btn-primary pull-right">Follow {{story.creator.pseudo | capitalize}}</button>
+                <button ng-if="(getFollowIndex(story.creator) > 0)" ng-click="unfollow(story.creator)" class="btn btn-default pull-right">Unfollow {{story.creator.pseudo | capitalize}}</button>
+                <h3><a href="#">{{story.target.object.title}}</a></h3>
+
+                <!--Like-->
+                <p class="text-muted">
+                    <button ng-if="!(getLikeIndex(story.target.object) > 0)" ng-click="like(story.target.object)" class="btn btn-success">Like</button>
+                    <button ng-if="(getLikeIndex(story.target.object) > 0)" ng-click="unlike(story.target.object)" class="btn btn-default">Unlike</button>
+                    <!--<span>XXX likes</span>-->
+                </p>
+            </div>
+        </section>
+
+
+    </div>
+
+    <!--========================================
+    FOOTER
+    ============================================-->
+    <footer class="panel-footer">
+        <form ng-submit='sendComment(story.target.object)' class="form-inline">
+            <input ng-model='story.target.object.new_comment' type="text" class="form-control input_comment" name="comment" placeholder="Comment the post">
+            <button type="submit" class="btn btn-primary send">Send Comment</button>
+        </form>
+    </footer>
+</div>
+
+

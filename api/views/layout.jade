@@ -4,5 +4,24 @@ html
     title= title
     link(rel='stylesheet', href="css/application.css")
   body
+    header.header
+      nav.navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+          #navbar.navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-left
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="/login")
+                  i.fa.fa-user
+                  |  Login
+              li
+                a(href="/signup")
+                  i.fa.fa-plus
+                  |  SignUp
     block content
+    if errors
+      script(type='text/javascript').
+        var errors =!{JSON.stringify(errors)};
+    script(type='text/javascript', src='js/libs/jquery/jquery.js')
     script(type='text/javascript', src='js/website.js')

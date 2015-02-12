@@ -1,0 +1,41 @@
+.under_header{
+    margin-top: 70px;
+}
+.after_left_menu{
+    margin-left: 220px;
+}
+.left{
+    float:left;
+}
+
+.main_content{
+    border: 1px solid green;
+}
+
+/*=============================================
+* AVATAR SIZES
+*==============================================*/
+.avatar_small{
+    max-height: 30px;
+    max-width: 30px;
+    margin-right: 10px;
+}
+.avatar_link .avatar_small{
+    position:relative;
+    top:6px;
+}
+.avatar_medium{
+    max-height: 45px;
+    max-width: 45px;
+    margin-right: 10px;
+}
+.avatar_link .avatar_medium{
+    position: relative;
+    bottom: 0px;
+}
+
+.avatar_large{
+    max-height: 60px;
+    max-width: 60px;
+    margin-right: 10px;
+}

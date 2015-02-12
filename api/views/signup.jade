@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  .signup_page
+    .container
+      div.row
+        div.col-md-5.col-md-offset-3
+          div
+            div.panel
+              div.panel-body
+                form.form-signin(role='form', action='/signup', method='POST')
+                  if message
+                    div.alert.alert-success.ltk-login.animated.flipInX(role='alert')
+                      .message.info
+                        span=message.value
+                  else if errors
+                    div.alert.alert-danger.ltk-login.animated.flipInX(role='alert')
+                       each kw in errors
+                        .message.info
+                          span= kw.error
+                  if fields
+                    div.form-group
+                      label(for="email") Email*
+                      input#email.form-control(type='email', placeholder='email', name='email' value=fields.email)
+                    div.form-group
+                      label(for='password') Password*
+                      input#password.form-control(type='password', placeholder='Password', name='password' value=fields.password)
+                    div.form-group
+                      label(for='passwordConfirm') Confirm password*
+                      input#passwordConfirm.form-control(type='password', placeholder='confirmpassword', name='passwordConfirm' value=fields.passwordConfirm)
+                    div.form-group
+                      label(for="firstname") Firstname*
+                      input#firstname.form-control(type='text', placeholder='firstname', name='firstname' value=fields.firstname)
+                    div.form-group
+                      label(for="lastname") Lastname*
+                      input#lastname.form-control(type='text', placeholder='lastname', name='lastname' value=fields.lastname)
+                  else
+                    div.form-group
+                      label(for="email") Email*
+                      input#email.form-control(type='email', placeholder='email', name='email')
+                    div.form-group
+                      label(for='inputPassword') Password*
+                      input#password.form-control(type='password', placeholder='Password', name='password')
+                    div.form-group
+                      label(for='inputPassword') Confirm password*
+                      input#passwordConfirm.form-control(type='password', placeholder='confirmpassword', name='passwordConfirm')
+                    div.form-group
+                      label(for="firstname") Firstname*
+                      input#firstname.form-control(type='text', placeholder='firstname', name='firstname')
+                    div.form-group
+                      label(for="lastname") Lastname*
+                      input#lastname.form-control(type='text', placeholder='lastname', name='lastname')
+                  div.form-group.login_button
+                    button.btn.btn-lg.btn-success.btn-block(type='submit') Sign Up
+                  div.form-group
+                    a(href="/login") Already have an account ?
