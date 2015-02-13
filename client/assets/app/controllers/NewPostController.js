@@ -57,7 +57,6 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
       uploadprogress: function(file, data){
         var progress = data + "%";
         $('.progress-bar').css('width', progress);
-        //console.log(data);
       },
       removedfile: function(file, data){
         // later call ajax to server for removing file
@@ -73,7 +72,7 @@ ltkApp.controller("NewPostController", function($scope, $window, $http, model, t
       },
       success: function(response, data){
         $scope.post.content = "/uploads/" + data;
-        //$("#dropFile").append("<img width='100%' height='400px' src='/uploads/" + data + "'/>");
+        $(".dz-preview").html("<img width='100%' height='150px;' src='/uploads/" + data + "'/>");
       }
     };
 
