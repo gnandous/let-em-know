@@ -9,21 +9,25 @@
 
 // ********************************** START ******************************//
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var BearerStrategy = require('passport-http-bearer');
-var User = require('../models/UserModel');
+(function(){
+  'use strict';
 
-passport.use(new BearerStrategy(
-  function(token, done) {
-    User.findOne({ token: token }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false);
-      }
-      return done(null, user, { scope: 'all' });
-    });
-  }
-));
+  var passport = require('passport'),
+      LocalStrategy = require('passport-local').Strategy,
+      BearerStrategy = require('passport-http-bearer'),
+      User = require('../models/UserModel');
 
-module.exports = passport;
+  passport.use(new BearerStrategy(
+    function(token, done) {
+      User.findOne({ token: token }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false);
+        }
+        return done(null, user, { scope: 'all' });
+      });
+    }
+  ));
+
+  module.exports = passport;
+})();
