@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var config = require('./environnement');
 var mongoose = require ('mongoose');
 var multer = require('multer');
+var passport = require('passport');
 mongoose.connect(config.db.mongo_uri);
 
 module.exports = configure;
@@ -31,8 +32,8 @@ function configure(app){
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   // init passport
-  app.use(require('../api/policies/authPolicie').initialize());
-
+  // app.use(require('../api/policies/authPolicie').initialize());
+  app.use(passport.initialize());
   app.use(express.static(path.join(__dirname, '..', 'client/public')));
   app.use(multer({dest: __dirname + '../' +  "/client/public/uploads"}));
 
