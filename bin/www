@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 var debug = require('debug')('let-em-know');
 var app = require('../app');
+var config = require('../config/app');
 var handleErrors = require('../api/helpers/errors');
+
+// config app
+config(app);
 
 require('../config/routes')(app);
 app.use(handleErrors._500);
